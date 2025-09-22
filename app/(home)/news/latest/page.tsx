@@ -87,7 +87,7 @@ export default function LatestNewsPage() {
             <div className="space-y-6">
               {articles.map((article) => (
                 <article key={article.id} className="border-b border-gray-200 pb-6">
-                  <Link href={`/news/${article.id}`} className="group">
+                  <Link href={`/article/${article.id}`} className="group">
                     <h2 className="text-xl font-semibold text-gray-900 group-hover:text-orange-600 transition-colors mb-2">
                       {article.title}
                     </h2>

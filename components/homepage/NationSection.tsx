@@ -146,7 +146,7 @@ export function NationSection() {
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {nationArticles.map((article) => (
-          <Link key={article.id} href={`/news/${article.id}`} className="group">
+          <Link key={article.id} href={`/article/${article.id}`} className="group">
             <div className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300">
               <div className="relative aspect-[16/10] overflow-hidden">
                 <Image

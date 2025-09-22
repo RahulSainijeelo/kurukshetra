@@ -138,7 +138,7 @@ export function InFocusSection() {
           </div>
         </div>
 
-        <Link href={`/news/${focusStory.id}`} className="group block">
+        <Link href={`/article/${focusStory.id}`} className="group block">
           <div className="relative aspect-[16/10] mb-4 overflow-hidden rounded-lg shadow-md border border-gray-200">
             <Image
               src={focusStory.images[0]?.url || '/api/placeholder/400/250'}

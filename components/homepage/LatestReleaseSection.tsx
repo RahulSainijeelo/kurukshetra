@@ -87,7 +87,7 @@ export function LatestReleaseSection() {
         {articles.map((article) => (
           <Link 
             key={article.id} 
-            href={`/news/${article.id}`} 
+            href={`/article/${article.id}`} 
             className="group block py-3 border-b border-gray-100 last:border-b-0"
           >
             <h5 className="text-gray-900 font-medium group-hover:text-orange-600 transition-colors mb-1 leading-relaxed">

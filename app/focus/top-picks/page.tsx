@@ -104,7 +104,7 @@ export default function TopPicksPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {articles.map((article) => (
                 <article key={article.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                  <Link href={`/news/${article.id}`} className="group">
+                  <Link href={`${article.id}`} className="group">
                     <div className="relative aspect-[16/10] overflow-hidden">
                       <Image
                         src={article.images[0]?.url || '/api/placeholder/400/250'}

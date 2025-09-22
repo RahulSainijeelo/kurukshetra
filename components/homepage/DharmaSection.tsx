@@ -142,7 +142,7 @@ export function DharmaSection() {
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {dharmaArticles.map((article) => (
-          <Link key={article.id} href={`/news/${article.id}`} className="group">
+          <Link key={article.id} href={`/article/${article.id}`} className="group">
             <div className="flex space-x-4 p-3 rounded-lg hover:bg-gradient-to-r hover:from-amber-50 hover:to-orange-50 transition-all duration-300">
               <div className="relative w-32 h-20 flex-shrink-0 overflow-hidden rounded-md shadow-md border border-gray-200">
                 <Image

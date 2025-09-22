@@ -128,7 +128,7 @@ export function CategoryArticleList({ category, page }: CategoryArticleListProps
 
       {articles.map((article, index) => (
         <article key={article.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-          <Link href={`/news/${article.id}`} className="group">
+          <Link href={`/article/${article.id}`} className="group">
             <div className="md:flex">
               {/* Article Image */}
               <div className="md:w-1/3">

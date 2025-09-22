@@ -35,7 +35,7 @@ export function CategorySidebar() {
         
         <div className="p-4 space-y-4">
           {latestNews.map((news) => (
-            <Link key={news.id} href={`/news/${news.id}`} className="group block">
+            <Link key={news.id} href={`/article/${news.id}`} className="group block">
               <div className="flex space-x-3">
                 <div className="relative w-20 h-14 flex-shrink-0 overflow-hidden rounded-md">
                   <Image

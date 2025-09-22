@@ -118,7 +118,7 @@ export function EditorsPicksSection() {
         <h2 className="text-2xl font-bold text-gray-900">Editor's Picks</h2>
       </div>
       
-      <Link href={`/news/${editorsPick.id}`} className="group block">
+      <Link href={`/article/${editorsPick.id}`} className="group block">
         <div className="relative aspect-[16/10] mb-4 overflow-hidden rounded-lg">
           <Image
             src={editorsPick.images[0]?.url || '/api/placeholder/400/250'}

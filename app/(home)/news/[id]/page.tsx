@@ -55,7 +55,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           items={[
             { label: "Home", href: "/" },
             { label: "News", href: "/news" },
-            { label: article.title.slice(0, 50) + "...", href: `/news/${id}` }
+            { label: article.title.slice(0, 50) + "...", href: `/article/${id}` }
           ]} 
         />
         

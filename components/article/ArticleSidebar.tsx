@@ -106,7 +106,7 @@ export function ArticleSidebar({ currentArticleId, category }: ArticleSidebarPro
           </h3>
           <div className="space-y-4">
             {relatedArticles.map((article) => (
-              <Link key={article.id} href={`/news/${article.id}`} className="group block">
+              <Link key={article.id} href={`/article/${article.id}`} className="group block">
                 <div className="flex space-x-3">
                   <div className="relative w-16 h-12 flex-shrink-0 overflow-hidden rounded border">
                     <Image
@@ -145,7 +145,7 @@ export function ArticleSidebar({ currentArticleId, category }: ArticleSidebarPro
           </h3>
           <div className="space-y-4">
             {trendingArticles.map((article, index) => (
-              <Link key={article.id} href={`/news/${article.id}`} className="group block">
+              <Link key={article.id} href={`/article/${article.id}`} className="group block">
                 <div className="flex space-x-3">
                   <div className="flex-shrink-0 w-6 h-6 bg-orange-100 rounded-full flex items-center justify-center">
                     <span className="text-orange-600 font-bold text-sm">{index + 1}</span>
