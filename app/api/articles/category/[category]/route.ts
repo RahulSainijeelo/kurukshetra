@@ -1,0 +1,88 @@
+import { db } from "@/config/firebase";
+import { NextRequest, NextResponse } from "next/server";
+import moment from "moment";
+
+function calculateTimeAgo(publishDate: string): string {
+  const now = moment();
+  const published = moment(publishDate);
+  const duration = moment.duration(now.diff(published));
+  
+  if (duration.asMinutes() < 60) {
+    return `${Math.floor(duration.asMinutes())} minutes ago`;
+  } else if (duration.asHours() < 24) {
+    return `${Math.floor(duration.asHours())} hours ago`;
+  } else if (duration.asDays() < 30) {
+    return `${Math.floor(duration.asDays())} days ago`;
+  } else {
+    return published.format('MMMM DD, YYYY');
+  }
+}
+
+export async function GET(req: NextRequest, { params }: { params: Promise<{ category: string }> }) {
+    try {
+        const resolvedParams = await params;
+        const { category } = resolvedParams;
+        const { searchParams } = new URL(req.url);
+        const page = parseInt(searchParams.get('page') || '1');
+        const limit = parseInt(searchParams.get('limit') || '10');
+        
+        const offset = (page - 1) * limit;
+
+        // Map URL-friendly category names to actual category names
+        const categoryMap: { [key: string]: string } = {
+            'politics': 'Politics',
+            'opinions': 'Opinions', 
+            'news-reports': 'News Reports',
+            'media': 'Media',
+            'bollywood-sports': 'Bollywood & Sports',
+            'dharm': 'Dharm',
+            'nation': 'Nation',
+            'globe': 'Globe',
+            'history': 'History',
+            'about': 'About'
+        };
+
+        const actualCategory = categoryMap[category] || category;
+
+        // Get total count for pagination
+        const totalSnapshot = await db.collection("article")
+            .where("category", "==", actualCategory)
+            .get();
+        const totalCount = totalSnapshot.size;
+
+        // Get paginated data
+        const snapshot = await db.collection("article")
+            .where("category", "==", actualCategory)
+            .orderBy("publishDate", "desc")
+            .offset(offset)
+            .limit(limit)
+            .get();
+
+        const data = snapshot.docs.map((doc: any) => ({
+            id: doc.id,
+            ...doc.data(),
+            timeAgo: calculateTimeAgo(doc.data().publishDate)
+        }));
+        return NextResponse.json({
+            data,
+            pagination: {
+                currentPage: page,
+                limit,
+                totalCount,
+                totalPages: Math.ceil(totalCount / limit),
+                hasNext: page < Math.ceil(totalCount / limit),
+                hasPrev: page > 1
+            },
+            category: actualCategory
+        }, { status: 200 });
+
+    } catch (error) {
+        console.error("Error fetching category articles:", error);
+        return NextResponse.json({
+            error: "Failed to fetch category articles",
+            message: error instanceof Error ? error.message : "Unknown error"
+        }, {
+            status: 500,
+        });
+    }
+}
