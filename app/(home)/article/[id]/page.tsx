@@ -50,11 +50,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     <div className="min-h-screen bg-white">
       <Header />
       
-      <div className="container mx-auto px-4 pt-6 pb-12">
+      <div className="container mx-auto !px-4 !pt-6 !pb-12">
         <Breadcrumb 
           items={[
             { label: "Home", href: "/" },
-            { label: "News", href: "/news" },
+            { label: "News", href: "/article" },
             { label: article.title.slice(0, 50) + "...", href: `/article/${id}` }
           ]} 
         />

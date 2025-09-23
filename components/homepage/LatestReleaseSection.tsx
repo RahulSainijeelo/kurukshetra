@@ -101,7 +101,7 @@ export function LatestReleaseSection() {
         
         {articles.length > 0 && (
           <Link 
-            href="/news/latest" 
+            href="/article/latest" 
             className="inline-block mt-4 text-orange-600 hover:text-orange-700 font-medium text-sm"
           >
             View all latest articles →

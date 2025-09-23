@@ -195,7 +195,7 @@ const AboutPage = () => {
           <h2 className="text-2xl font-bold mb-4">धर्मक्षेत्रे कुरुक्षेत्रे</h2>
           <p className="text-lg mb-6">The battlefield of righteousness awaits. Will you answer the call?</p>
           <Link 
-            href="/news/latest" 
+            href="/article/latest" 
             className="inline-block bg-white text-orange-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
           >
             Begin Your Journey
