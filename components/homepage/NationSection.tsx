@@ -73,7 +73,7 @@ export function NationSection() {
           <div className="bg-gradient-to-r from-green-600 via-emerald-600 to-green-700 px-6 py-3 rounded-lg shadow-lg border-l-4 border-lime-400">
             <h2 className="text-2xl font-bold text-white tracking-wide flex items-center">
               <span className="mr-2">🇮🇳</span>
-              NATION
+              Bharat
               <span className="ml-2 text-sm bg-lime-400 text-green-800 px-2 py-1 rounded-full font-semibold">
                 LATEST
               </span>

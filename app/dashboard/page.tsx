@@ -35,7 +35,7 @@ export default function Dashboard() {
                 Dashboard
               </h1>
               <p className="text-base" style={{ color: "#4b5563" }}>
-                Manage your freelance business operations
+                Manage your articles
               </p>
             </div>
             <div className="flex items-center gap-3">
