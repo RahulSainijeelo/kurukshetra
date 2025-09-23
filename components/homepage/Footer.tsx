@@ -46,13 +46,9 @@ export function Footer() {
   ];
 
   const footerLinks = [
-    { text: "Latest News", href: "/latest-news" },
-    { text: "Hindi News", href: "/hindi-news" },
-    { text: "Gujarati News", href: "/gujarati-news" },
-    { text: "Terms", href: "/terms" },
-    { text: "Privacy Policy", href: "/privacy-policy" },
-    { text: "About Us", href: "/about-us" },
-    { text: "Contact Us", href: "/contact-us" }
+    { text: "Terms", href: "#" },
+    { text: "Privacy Policy", href: "#" },
+    { text: "About Us", href: "/about" },
   ];
 
   return (

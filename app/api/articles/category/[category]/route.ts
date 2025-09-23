@@ -2,6 +2,12 @@ import { db } from "@/config/firebase";
 import { NextRequest, NextResponse } from "next/server";
 import moment from "moment";
 
+// Valid categories - this prevents static files from being processed
+const validCategories = [
+    'politics', 'opinions', 'news-reports', 'media', 
+    'bollywood-sports', 'dharm', 'nation', 'globe', 'history', 'about'
+];
+
 function calculateTimeAgo(publishDate: string): string {
   const now = moment();
   const published = moment(publishDate);
@@ -22,9 +28,22 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ cate
     try {
         const resolvedParams = await params;
         const { category } = resolvedParams;
+        
+        // ✅ Immediately reject static files and invalid categories
+        if (!category || 
+            typeof category !== 'string' || 
+            category.includes('.') || 
+            category.length > 50 ||
+            !validCategories.includes(category.toLowerCase())) {
+            return NextResponse.json(
+                { error: "Invalid category" },
+                { status: 404 }
+            );
+        }
+
         const { searchParams } = new URL(req.url);
-        const page = parseInt(searchParams.get('page') || '1');
-        const limit = parseInt(searchParams.get('limit') || '10');
+        const page = Math.max(1, parseInt(searchParams.get('page') || '1'));
+        const limit = Math.min(50, Math.max(1, parseInt(searchParams.get('limit') || '10')));
         
         const offset = (page - 1) * limit;
 
@@ -42,7 +61,14 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ cate
             'about': 'About'
         };
 
-        const actualCategory = categoryMap[category] || category;
+        const actualCategory = categoryMap[category.toLowerCase()];
+        
+        if (!actualCategory) {
+            return NextResponse.json(
+                { error: "Category not found" },
+                { status: 404 }
+            );
+        }
 
         // Get total count for pagination
         const totalSnapshot = await db.collection("article")
@@ -58,11 +84,14 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ cate
             .limit(limit)
             .get();
 
-        const data = snapshot.docs.map((doc: any) => ({
+        const data = snapshot.docs.map((doc) => ({
             id: doc.id,
             ...doc.data(),
-            timeAgo: calculateTimeAgo(doc.data().publishDate)
+            timeAgo: calculateTimeAgo(doc.data()?.publishDate || '')
         }));
+
+        console.log(`Fetched ${data.length} articles for category: ${actualCategory}`);
+        
         return NextResponse.json({
             data,
             pagination: {

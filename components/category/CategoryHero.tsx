@@ -10,7 +10,7 @@ export function CategoryHero({ category }: CategoryHeroProps) {
   return (
     <section className="py-1">
       {/* Advertisement Banner */}
-      {category === 'politics' && (
+      {/* {category === 'politics' && (
         <div className="mb-2">
           <div className="relative w-full h-24 md:h-32 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg overflow-hidden">
             <Image
@@ -21,7 +21,7 @@ export function CategoryHero({ category }: CategoryHeroProps) {
             />
           </div>
         </div>
-      )}
+      )} */}
 
       {/* Category Header */}
       <div className="text-center mb-2">

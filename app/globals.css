@@ -164,7 +164,6 @@ body {
   line-height: 1.6;
   margin: 0;
   padding: 0;
-  padding-top: var(--header-total-height); /* Account for fixed header */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
