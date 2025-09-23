@@ -34,6 +34,7 @@ interface ApiResponse {
 
 export function InFocusSection() {
   const [focusStory, setFocusStory] = useState<Article | null>(null);
+  const [heroArticles, setHeroArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -41,14 +42,18 @@ export function InFocusSection() {
     const fetchTopPicks = async () => {
       try {
         setLoading(true);
-        // Fetch only 1 article for the main focus story
-        const response = await fetch('/api/articles?type=top-picks&limit=1');
+        // Fetch 3 articles total - 1 for main focus, 2 for hero section
+        const response = await fetch('/api/articles?type=top-picks&limit=3');
         if (!response.ok) {
           throw new Error('Failed to fetch top picks');
         }
         const data: ApiResponse = await response.json();
+
         if (data.data.length > 0) {
+          // First article goes to main focus
           setFocusStory(data.data[0]);
+          // Remaining articles go to hero section (max 2)
+          setHeroArticles(data.data.slice(1, 3));
         }
       } catch (err) {
         setError(err instanceof Error ? err.message : 'An error occurred');
@@ -92,7 +97,7 @@ export function InFocusSection() {
             </div>
           </div>
         </section>
-        <HeroSection />
+        <HeroSection articles={[]} loading={true} />
       </>
     );
   }
@@ -118,7 +123,7 @@ export function InFocusSection() {
             View all top picks →
           </Link>
         </section>
-        <HeroSection />
+        <HeroSection articles={[]} loading={false} />
       </>
     );
   }
@@ -138,7 +143,7 @@ export function InFocusSection() {
           </div>
         </div>
 
-        <Link href={`/article/${focusStory.id}`} className="group block">
+        <Link href={`/news/${focusStory.id}`} className="group block">
           <div className="relative aspect-[16/10] mb-4 overflow-hidden rounded-lg shadow-md border border-gray-200">
             <Image
               src={focusStory.images[0]?.url || '/api/placeholder/400/250'}
@@ -149,11 +154,22 @@ export function InFocusSection() {
             <div className="absolute top-3 right-3 bg-orange-600 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
               TOP PICK
             </div>
+            {focusStory.category && (
+              <div className="absolute top-3 left-3 bg-white bg-opacity-90 text-gray-800 px-2 py-1 rounded text-xs font-semibold">
+                {focusStory.category}
+              </div>
+            )}
           </div>
 
           <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-orange-600 transition-colors line-clamp-3">
             {focusStory.title}
           </h3>
+
+          {focusStory.description && (
+            <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+              {focusStory.description}
+            </p>
+          )}
 
           <div className="flex items-center text-sm text-gray-600">
             <div className="w-8 h-8 bg-gradient-to-r from-orange-400 to-red-400 rounded-full mr-2 flex items-center justify-center shadow-sm">
@@ -173,7 +189,11 @@ export function InFocusSection() {
           View all top picks →
         </Link>
       </section>
-      <HeroSection />
+
+      {
+        (heroArticles && heroArticles.length>0)?(<HeroSection articles={heroArticles} loading={loading} />):""
+
+      }
     </>
   );
 }
