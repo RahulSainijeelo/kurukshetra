@@ -120,7 +120,7 @@ export function Footer() {
             </div>
 
             {/* Newsletter Signup */}
-            <div className="bg-gray-50 border border-gray-200 p-6 rounded-lg">
+            {/* <div className="bg-gray-50 border border-gray-200 p-6 rounded-lg">
               <h4 className="text-lg font-semibold text-gray-900 mb-3">
                 Stay Updated
               </h4>
@@ -137,7 +137,7 @@ export function Footer() {
                   Subscribe
                 </button>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
 

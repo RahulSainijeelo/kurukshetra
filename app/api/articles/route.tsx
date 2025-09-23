@@ -58,11 +58,11 @@ export async function GET(request: NextRequest) {
                      .orderBy("publishDate", "desc");
         break;
       case 'editors-choice':
-        query = query.where("images", "array-contains-any", [{ preference: "Editors Choice" }])
+        query = query.where("preference", "==",  "Editors Choice")
                      .orderBy("publishDate", "desc");
         break;
       case 'specials':
-        query = query.where("images", "array-contains-any", [{ preference: "Specials" }])
+        query = query.where("preference", "==",  "Specials")
                      .orderBy("publishDate", "desc");
         break;
       default:
