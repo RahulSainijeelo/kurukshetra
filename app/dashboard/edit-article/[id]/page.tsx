@@ -276,13 +276,13 @@ export default function EditArticlePage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="container mx-auto px-4 pt-24 pb-12">
+      <div className="container mx-auto px-4 !pt-5 pb-12">
         <div className="max-w-4xl mx-auto">
 
           {/* Back Button */}
           <Link
-            href="/dashboard/articles"
-            className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-6"
+            href="/dashboard/"
+            className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-1"
           >
             <ArrowLeft size={16} />
             Back to Articles
@@ -326,7 +326,7 @@ export default function EditArticlePage() {
 
           {/* Form Content - Same components as create */}
           <div className="space-y-8">
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 md:p-8">
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 md:p-6">
 
               {currentStage === 1 && (
                 <StageOne
@@ -357,7 +357,7 @@ export default function EditArticlePage() {
             </div>
 
             {/* Navigation Buttons */}
-            <div className="flex justify-between items-center pt-6">
+            <div className="flex justify-between items-center pb-4">
               <Button
                 type="button"
                 variant="outline"

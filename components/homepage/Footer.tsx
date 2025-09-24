@@ -7,42 +7,30 @@ import name from "@/public/images/logo_name.png"
 
 export function Footer() {
   const socialLinks = [
-    {
-      Icon: Facebook,
-      href: "https://facebook.com",
-      label: "Facebook",
-      color: "hover:text-blue-600"
-    },
+    // {
+    //   Icon: Facebook,
+    //   href: "https://facebook.com",
+    //   label: "Facebook",
+    //   color: "hover:text-blue-600"
+    // },
     {
       Icon: Instagram,
-      href: "https://instagram.com",
+      href: "https://instagram.com/kurukshetra108/",
       label: "Instagram",
       color: "hover:text-pink-600"
     },
     {
       Icon: Youtube,
-      href: "https://youtube.com",
+      href: "https://youtube.com/@kuruksetra?si=GP3gQCFzJv0f4k3g",
       label: "YouTube",
       color: "hover:text-red-600"
     },
-    {
-      Icon: Twitter,
-      href: "https://twitter.com",
-      label: "Twitter",
-      color: "hover:text-blue-400"
-    },
-    {
-      Icon: MessageCircle,
-      href: "https://whatsapp.com",
-      label: "WhatsApp",
-      color: "hover:text-green-600"
-    },
-    {
-      Icon: Rss,
-      href: "/rss",
-      label: "RSS Feed",
-      color: "hover:text-orange-600"
-    }
+    // {
+    //   Icon: Twitter,
+    //   href: "https://twitter.com",
+    //   label: "Twitter",
+    //   color: "hover:text-blue-400"
+    // },
   ];
 
   const footerLinks = [
@@ -72,13 +60,14 @@ export function Footer() {
               </div>
               <div>
                 <Image width={105} src={name} alt="Kuruksetra" />
-              
+
               </div>
             </div>
 
             <p className="text-gray-600 leading-relaxed mb-6 text-sm">
-              News and opinion website that brings you reports and narrative from a
-              perspective often ignored or suppressed by the mainstream media of India.
+              KURUKSHETRA is the intellectual battlefield for the soul of Bharat.
+              In an age where mainstream narratives systematically suppress indigenous truths, we stand as a vanguard for civilizational reclamation. Our mission is to decolonize the Bharatiya mind, dismantle entrenched ideological hegemonies, and champion the Dharma-based narrative of our ancient civilization.
+              We are the voice of the resistance. The voice of Dharma.
             </p>
 
             {/* Contact Info */}

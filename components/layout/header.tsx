@@ -9,6 +9,7 @@ import { useUser } from "@clerk/nextjs";
 import Image from "next/image";
 import logo from "@/public/images/logo.png"
 import name from "@/public/images/logo_name.png"
+
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -57,6 +58,7 @@ export function Header() {
         isScrolled ? "shadow-lg" : ""
       )}
     >
+      {/* Top bar with logo, time, and social icons */}
       <div className="bg-white border-b border-gray-300 p-[9px]">
         <div className="container mx-auto px-3 md:px-4 py-2">
           <div className="flex items-center justify-between">
@@ -107,20 +109,15 @@ export function Header() {
                   </Button>
                 </Link>
               )}
-              <button
-                className="md:hidden p-2 hover:bg-gray-100 rounded-md transition-colors"
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                aria-label="Toggle menu"
-              >
-                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </button>
             </div>
           </div>
         </div>
       </div>
 
+      {/* Navigation bar */}
       <div className="bg-white text-black">
         <div className="container mx-auto px-4 md:px-6">
+          {/* Desktop Navigation - unchanged */}
           <nav className="hidden md:flex items-center justify-center space-x-8 py-[3px]">
             {navigationTabs.map((tab, index) => (
               <NavLink key={index} href={`/${tab.toLowerCase()}`}>
@@ -129,41 +126,34 @@ export function Header() {
             ))}
           </nav>
 
-          {isMobileMenuOpen && (
-            <div className="md:hidden py-4 border-t border-gray-700">
-              <div className="flex flex-col space-y-3">
-                {navigationTabs.map((tab, index) => (
-                  <MobileNavLink
-                    key={index}
-                    href={`#${tab.toLowerCase()}`}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {tab}
-                  </MobileNavLink>
-                ))}
-                <div className="pt-4 mt-4 border-t border-gray-700">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-3">
-                      {socialIcons.map(({ Icon, href, color }, index) => (
-                        <Link
-                          key={index}
-                          href={href}
-                          className="transition-colors hover:opacity-80"
-                        >
-                          <Icon size={20} style={{ color }} />
-                        </Link>
-                      ))}
-                    </div>
-                    <div className="text-sm text-gray-400 font-medium">
-                      {currentTime}
-                    </div>
-                  </div>
-                </div>
-              </div>
+          {/* Mobile Navigation - horizontal scrollable */}
+          <nav className="md:hidden py-[3px]">
+            <div 
+              className="flex items-center space-x-6 overflow-x-auto scrollbar-hide"
+              style={{
+                scrollbarWidth: 'none', /* Firefox */
+                msOverflowStyle: 'none',  /* Internet Explorer 10+ */
+              }}
+            >
+              {navigationTabs.map((tab, index) => (
+                <MobileNavLink key={index} href={`/${tab.toLowerCase()}`}>
+                  {tab}
+                </MobileNavLink>
+              ))}
             </div>
-          )}
+          </nav>
         </div>
       </div>
+
+      {/* Add custom CSS for hiding scrollbar */}
+      <style jsx>{`
+        .scrollbar-hide {
+          -webkit-overflow-scrolling: touch;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
     </header>
   );
 }
@@ -190,19 +180,18 @@ function NavLink({
 function MobileNavLink({
   href,
   children,
-  onClick,
 }: {
   href: string;
   children: React.ReactNode;
-  onClick: () => void;
 }) {
   return (
     <Link
       href={href}
-      className="text-base font-medium uppercase tracking-wide py-3 px-2 rounded-md transition-all duration-300 hover:bg-gray-800 hover:text-orange-400"
-      onClick={onClick}
+      className="text-sm font-medium uppercase tracking-wide transition-all duration-300 relative group py-2 px-3 hover:text-orange-400 whitespace-nowrap flex-shrink-0"
+      style={{textDecoration:"none"}}
     >
       {children}
+      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-400 transition-all duration-300 group-hover:w-full" />
     </Link>
   );
 }

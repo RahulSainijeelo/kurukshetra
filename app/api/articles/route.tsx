@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { db } from "@/config/firebase"; // Use your admin SDK config
+import { db } from "@/config/firebase"; 
 import { NextRequest, NextResponse } from "next/server";
 import moment from "moment"
 
@@ -31,9 +31,8 @@ const articleSchema = z.object({
   images: z.array(z.object({
   url: z.string().url("Invalid image URL"),
   deleteUrl:z.string(),
-  preference:z.enum(preferences).optional()
 })),
-
+  preference:z.enum(preferences).optional(),
   content:z.string().min(50,"Title must be at least 2 characters"),
   publishDate:z.string().default(moment().format("MMMM Do YYYY, h:mm:ss a")),
 });
@@ -122,8 +121,10 @@ function calculateTimeAgo(publishDate: string): string {
 
 export async function POST(request: NextRequest) {
   try {
+
     const body = await request.json();
     const data = articleSchema.parse(body);
+
     await db.collection("article").add(data);
     return NextResponse.json("article item added successfully", {
       status: 200,

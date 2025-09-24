@@ -31,7 +31,7 @@ interface ApiResponse {
   category: string;
 }
 
-export function DharmaSection() {
+export function DharmaSection({ category, tag, title, emoji }: any) {
   const [dharmaArticles, setDharmaArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -41,7 +41,7 @@ export function DharmaSection() {
       try {
         setLoading(true);
         // Fetch from the category API for Dharma articles, limit to 4
-        const response = await fetch('/api/articles/category/dharm?limit=4&page=1');
+        const response = await fetch(`/api/articles/category/${category}?limit=4&page=1`);
         if (!response.ok) {
           throw new Error('Failed to fetch dharma articles');
         }
@@ -72,15 +72,15 @@ export function DharmaSection() {
         <div className="relative mb-6">
           <div className="bg-gradient-to-r from-amber-600 via-orange-600 to-amber-700 px-6 py-3 rounded-lg shadow-lg border-l-4 border-yellow-400">
             <h2 className="text-2xl font-bold text-white tracking-wide flex items-center">
-              <span className="mr-2">🕉️</span>
-              DHARMA
-              <span className="ml-2 text-sm bg-yellow-400 text-amber-800 px-2 py-1 rounded-full font-semibold">
-                SPIRITUAL
-              </span>
+              {emoji && <span className="mr-2">{emoji}</span>}
+              {category.toUpperCase()}
+               {tag &&  <span className="ml-2 text-sm bg-yellow-400 text-amber-800 px-2 py-1 rounded-full font-semibold">
+              {tag}
+            </span>}
             </h2>
           </div>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {[...Array(4)].map((_, index) => (
             <div key={index} className="flex space-x-4 animate-pulse">
@@ -103,23 +103,23 @@ export function DharmaSection() {
         <div className="relative mb-6">
           <div className="bg-gradient-to-r from-amber-600 via-orange-600 to-amber-700 px-6 py-3 rounded-lg shadow-lg border-l-4 border-yellow-400">
             <h2 className="text-2xl font-bold text-white tracking-wide flex items-center">
-              <span className="mr-2">🕉️</span>
-              DHARMA
-              <span className="ml-2 text-sm bg-yellow-400 text-amber-800 px-2 py-1 rounded-full font-semibold">
-                SPIRITUAL
-              </span>
+              {emoji && <span className="mr-2">{emoji}</span>}
+              {title}
+               {tag &&  <span className="ml-2 text-sm bg-yellow-400 text-amber-800 px-2 py-1 rounded-full font-semibold">
+              {tag}
+            </span>}
             </h2>
           </div>
         </div>
         <p className="text-gray-600 text-center py-8">
-          {error ? `Error loading dharma articles: ${error}` : 'No dharma articles available'}
+          {error ? `Error loading dharma articles: ${error}` : `No ${title.toLowerCase()} articles available`}
         </p>
         <div className="text-center">
-          <Link 
-            href="/dharm" 
+          <Link
+            href="/dharm"
             className="inline-block bg-gradient-to-r from-amber-600 to-orange-600 text-white px-4 py-2 rounded-lg font-medium text-sm hover:from-amber-700 hover:to-orange-700 transition-all shadow-md"
           >
-            View all dharma articles →
+            View all {title.toLowerCase()} articles →
           </Link>
         </div>
       </section>
@@ -131,15 +131,16 @@ export function DharmaSection() {
       <div className="relative mb-6">
         <div className="bg-gradient-to-r from-amber-600 via-orange-600 to-amber-700 px-6 py-3 rounded-lg shadow-lg border-l-4 border-yellow-400">
           <h2 className="text-2xl font-bold text-white tracking-wide flex items-center">
-            <span className="mr-2">🕉️</span>
-            DHARMA
-            <span className="ml-2 text-sm bg-yellow-400 text-amber-800 px-2 py-1 rounded-full font-semibold">
-              SPIRITUAL
-            </span>
+            {emoji && <span className="mr-2">{emoji}</span>}
+
+            {title}
+           {tag &&  <span className="ml-2 text-sm bg-yellow-400 text-amber-800 px-2 py-1 rounded-full font-semibold">
+              {tag}
+            </span>}
           </h2>
         </div>
       </div>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {dharmaArticles.map((article) => (
           <Link key={article.id} href={`/article/${article.id}`} className="group">
@@ -181,11 +182,11 @@ export function DharmaSection() {
 
       {/* View All Button */}
       <div className="text-center mt-6">
-        <Link 
-          href="/dharm" 
+        <Link
+          href="/dharm"
           className="inline-block bg-gradient-to-r from-amber-600 to-orange-600 text-white px-6 py-3 rounded-lg font-medium text-sm hover:from-amber-700 hover:to-orange-700 transition-all shadow-md"
         >
-          View all dharma articles →
+          View all {title.toLowerCase()} articles →
         </Link>
       </div>
     </section>

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Calendar, User, Eye, Share2, BookmarkPlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface Article {
   id: string;
@@ -29,10 +30,7 @@ interface ArticleViewProps {
 
 export function ArticleView({ article }: ArticleViewProps) {
   const [viewCount, setViewCount] = useState(article.views || 0);
-  const [isBookmarked, setIsBookmarked] = useState(false);
-
   useEffect(() => {
-    // Increment view count when article is loaded
     const incrementView = async () => {
       try {
         await fetch(`/api/articles/${article.id}/view`, {
@@ -70,11 +68,6 @@ export function ArticleView({ article }: ArticleViewProps) {
       navigator.clipboard.writeText(window.location.href);
       alert('Article link copied to clipboard!');
     }
-  };
-
-  const toggleBookmark = () => {
-    setIsBookmarked(!isBookmarked);
-    // TODO: Implement bookmark functionality with backend
   };
 
   return (
@@ -143,22 +136,13 @@ export function ArticleView({ article }: ArticleViewProps) {
               <Share2 className="w-4 h-4" />
               <span>Share</span>
             </Button>
-            <Button 
-              variant={isBookmarked ? "default" : "outline"}
-              size="sm" 
-              onClick={toggleBookmark}
-              className="flex items-center space-x-1"
-            >
-              <BookmarkPlus className="w-4 h-4" />
-              <span>{isBookmarked ? 'Saved' : 'Save'}</span>
-            </Button>
           </div>
         </div>
       </header>
       
       {/* Article Content */}
       <div className="prose prose-lg max-w-none mb-12">
-        <ContentPreview content={article.content} />
+        <ContentPreview content={article.content} key={article.id} />
       </div>
       
       {/* Additional Images Gallery */}
@@ -203,76 +187,168 @@ export function ArticleView({ article }: ArticleViewProps) {
   );
 }
 
-// Content Preview Component (same as StageThree)
+// Fixed Content Preview Component with proper client-side navigation handling
 function ContentPreview({ content }: { content: string }) {
+  const [isClient, setIsClient] = useState(false);
+  const [processedContent, setProcessedContent] = useState('');
+  const [widgetContainerId] = useState(() => `twitter-container-${Math.random().toString(36).substr(2, 9)}`);
+
   useEffect(() => {
-    // Load Twitter widget script after component mounts
-    if (window.twttr) {
-      window.twttr.widgets.load();
-    } else {
-      const script = document.createElement('script');
-      script.src = 'https://platform.twitter.com/widgets.js';
-      script.async = true;
-      script.charset = 'utf-8';
-      document.head.appendChild(script);
+    setIsClient(true);
+    
+    if (!content) {
+      setProcessedContent('');
+      return;
     }
+
+    // Clean and process content
+    let cleanedContent = content
+      // Remove all Twitter script tags to prevent conflicts
+      .replace(/<script[^>]*src="https:\/\/platform\.twitter\.com\/widgets\.js"[^>]*><\/script>/g, '')
+      .replace(/<script[^>]*async[^>]*src="https:\/\/platform\.twitter\.com\/widgets\.js"[^>]*><\/script>/g, '')
+      .replace(/<script[^>]*charset="utf-8"[^>]*src="https:\/\/platform\.twitter\.com\/widgets\.js"[^>]*><\/script>/g, '')
+      
+      // Handle YouTube embeds
+      .replace(/\[YOUTUBE\](https:\/\/(?:www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]+))\[\/YOUTUBE\]/g, 
+        (match, url, videoId) => {
+          return `<div class="my-8">
+            <div class="aspect-video w-full max-w-3xl mx-auto bg-gray-100 rounded-lg overflow-hidden border shadow-sm">
+              <iframe 
+                width="100%" 
+                height="100%" 
+                src="https://www.youtube.com/embed/${videoId}" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen
+                class="w-full h-full">
+              </iframe>
+            </div>
+          </div>`;
+        })
+      
+      // Handle Twitter embeds with actual Twitter widget (custom format)
+      .replace(/\[TWITTER\](https:\/\/(?:twitter\.com|x\.com)\/(\w+)\/status\/(\d+))\[\/TWITTER\]/g,
+        (match, url, username, tweetId) => {
+          return `<div class="my-8 flex justify-center">
+            <blockquote class="twitter-tweet" data-theme="light" data-width="550" data-dnt="true">
+              <p lang="en" dir="ltr">Loading tweet...</p>
+              <a href="${url}">View Tweet</a>
+            </blockquote>
+          </div>`;
+        })
+      
+      // Handle basic markdown formatting
+      .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-gray-900">$1</strong>')
+      .replace(/\*(.*?)\*/g, '<em class="italic text-gray-800">$1</em>')
+      .replace(/^> (.*$)/gim, '<blockquote class="border-l-4 border-orange-300 pl-6 py-2 my-6 bg-orange-50 italic text-gray-700 rounded-r-lg">$1</blockquote>')
+      .replace(/^- (.*$)/gim, '<li class="list-disc ml-6 mb-1 text-gray-800">$1</li>');
+
+    // Convert line breaks to paragraphs
+    const paragraphs = cleanedContent.split('\n\n').filter(p => p.trim());
+    const htmlContent = paragraphs.map(paragraph => {
+      if (paragraph.includes('<div class="my-8">') || 
+          paragraph.includes('<blockquote') || 
+          paragraph.includes('<li class="list-disc')) {
+        return paragraph;
+      }
+      return `<p class="mb-6 leading-relaxed text-gray-800 text-lg">${paragraph.replace(/\n/g, '<br>')}</p>`;
+    }).join('');
+
+    setProcessedContent(htmlContent);
+    
   }, [content]);
 
-  if (!content) {
+  // Separate useEffect for Twitter widget loading with navigation fix
+  useEffect(() => {
+    if (!isClient || !processedContent) return;
+    
+    // Check if there are Twitter widgets in the content
+    const hasTwitterWidgets = processedContent.includes('twitter-tweet');
+    
+    if (!hasTwitterWidgets) return;
+
+    const loadTwitterWidgets = () => {
+      // Force reload Twitter widgets for client-side navigation
+      const container = document.getElementById(widgetContainerId);
+      if (!container) return;
+
+      if (window.twttr && window.twttr.widgets) {
+        // Clear any existing widgets in this container first
+        const existingWidgets = container.querySelectorAll('.twitter-tweet-rendered');
+        existingWidgets.forEach(widget => {
+          const parent = widget.parentNode;
+          if (parent) {
+            // Replace rendered widget with original blockquote
+            const blockquote = widget.querySelector('blockquote');
+            if (blockquote) {
+              parent.replaceChild(blockquote, widget);
+            }
+          }
+        });
+
+        // Now load widgets in this specific container
+        window.twttr.widgets.load(container);
+      } else {
+        // Load Twitter script if not already loaded
+        const existingScript = document.querySelector('script[src="https://platform.twitter.com/widgets.js"]');
+        if (!existingScript) {
+          const script = document.createElement('script');
+          script.src = 'https://platform.twitter.com/widgets.js';
+          script.async = true;
+          script.charset = 'utf-8';
+          script.onload = () => {
+            if (window.twttr && window.twttr.widgets) {
+              window.twttr.widgets.load(container);
+            }
+          };
+          document.head.appendChild(script);
+        } else {
+          // Script exists but might not be ready
+          const checkAndLoad = () => {
+            if (window.twttr && window.twttr.widgets) {
+              window.twttr.widgets.load(container);
+            } else {
+              setTimeout(checkAndLoad, 100);
+            }
+          };
+          checkAndLoad();
+        }
+      }
+    };
+
+    // Use a timeout to ensure DOM is ready
+    const timer = setTimeout(loadTwitterWidgets, 300);
+    
+    return () => {
+      clearTimeout(timer);
+    };
+    
+  }, [isClient, processedContent, widgetContainerId]);
+
+  // Return placeholder during SSR and initial client render
+  if (!isClient) {
+    return (
+      <div className="prose prose-lg max-w-none">
+        <div className="animate-pulse">
+          <div className="h-4 bg-gray-200 rounded w-3/4 mb-4"></div>
+          <div className="h-4 bg-gray-200 rounded w-1/2 mb-4"></div>
+          <div className="h-4 bg-gray-200 rounded w-2/3 mb-4"></div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!processedContent) {
     return <p className="text-gray-500 italic">No content available.</p>;
   }
 
-  // Process the content for preview (same logic as StageThree)
-  let processedContent = content
-    // Handle YouTube embeds
-    .replace(/\[YOUTUBE\](https:\/\/(?:www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]+))\[\/YOUTUBE\]/g, 
-      (match, url, videoId) => {
-        return `<div class="my-8">
-          <div class="aspect-video w-full max-w-3xl mx-auto bg-gray-100 rounded-lg overflow-hidden border shadow-sm">
-            <iframe 
-              width="100%" 
-              height="100%" 
-              src="https://www.youtube.com/embed/${videoId}" 
-              title="YouTube video player" 
-              frameborder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen
-              class="w-full h-full">
-            </iframe>
-          </div>
-        </div>`;
-      })
-    // Handle Twitter embeds with actual Twitter widget
-    .replace(/\[TWITTER\](https:\/\/(?:twitter\.com|x\.com)\/(\w+)\/status\/(\d+))\[\/TWITTER\]/g,
-      (match, url, username, tweetId) => {
-        return `<div class="my-8 flex justify-center">
-          <blockquote class="twitter-tweet" data-theme="light" data-width="550" data-dnt="true">
-            <p lang="en" dir="ltr">Loading tweet...</p>
-            <a href="${url}">View Tweet</a>
-          </blockquote>
-        </div>`;
-      })
-    // Handle basic markdown formatting
-    .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-gray-900">$1</strong>')
-    .replace(/\*(.*?)\*/g, '<em class="italic text-gray-800">$1</em>')
-    .replace(/^> (.*$)/gim, '<blockquote class="border-l-4 border-orange-300 pl-6 py-2 my-6 bg-orange-50 italic text-gray-700 rounded-r-lg">$1</blockquote>')
-    .replace(/^- (.*$)/gim, '<li class="list-disc ml-6 mb-1 text-gray-800">$1</li>');
-
-  // Convert line breaks to paragraphs
-  const paragraphs = processedContent.split('\n\n').filter(p => p.trim());
-  const htmlContent = paragraphs.map(paragraph => {
-    if (paragraph.includes('<div class="my-8">') || 
-        paragraph.includes('<blockquote') || 
-        paragraph.includes('<li class="list-disc')) {
-      return paragraph;
-    }
-    return `<p class="mb-6 leading-relaxed text-gray-800 text-lg">${paragraph.replace(/\n/g, '<br>')}</p>`;
-  }).join('');
-
   return (
     <div 
-      dangerouslySetInnerHTML={{ __html: htmlContent }}
-      className="twitter-content"
+      id={widgetContainerId}
+      dangerouslySetInnerHTML={{ __html: processedContent }}
+      className="twitter-content prose prose-lg max-w-none"
+      suppressHydrationWarning={true}
     />
   );
 }
@@ -282,7 +358,7 @@ declare global {
   interface Window {
     twttr: {
       widgets: {
-        load: () => void;
+        load: (element?: HTMLElement) => Promise<void>;
       };
     };
   }

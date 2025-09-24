@@ -9,7 +9,7 @@ import { SpeedInsights } from '@vercel/speed-insights/react';
 import { JsonLd } from "@/components/seo/JsonLd";
 import { GoogleAnalytics } from "@/components/seo/GoogleAnalytics";
 
-const inter = Inter({ 
+const inter = Inter({
   subsets: ["latin"],
   variable: '--font-inter',
   display: 'swap',
@@ -37,28 +37,28 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://kurukshetra.info'),
-  
+
   title: {
     default: "Kurukshetra - Take You to the Reality | Facts Speak, Lies Lie on the Ground",
     template: "%s | Kurukshetra"
   },
   description: "Kurukshetra brings you authentic news, dharmic values, and truth-based journalism. Founded on principles of righteousness, we expose lies and present facts. Join the civilizational awakening.",
-  
+
   keywords: [
-    "Kurukshetra", "dharma", "truth", "authentic news", "Indian journalism", 
+    "Kurukshetra", "dharma", "truth", "authentic news", "Indian journalism",
     "dharmic values", "civilizational awakening", "Bharat", "Hindu dharma",
     "politics", "nation", "culture", "history", "spiritual journalism",
     "Rajiv Dixit", "truth movement", "anti-colonial", "indigenous knowledge",
     "Bharatiya values", "dharma yuddha", "righteous journalism"
   ],
-  
+
   authors: [
     { name: "Kurukshetra Editorial Team" },
     { name: "Editorial Board" }
   ],
   creator: "Kurukshetra Media",
   publisher: "Kurukshetra Digital Media",
-  
+
   alternates: {
     canonical: '/',
     languages: {
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
       'hi-IN': '/hi-IN',
     },
   },
-  
+
   // Open Graph
   openGraph: {
     type: 'website',
@@ -93,7 +93,7 @@ export const metadata: Metadata = {
       }
     ],
   },
-  
+
   // Twitter Card
   twitter: {
     card: 'summary_large_image',
@@ -103,7 +103,7 @@ export const metadata: Metadata = {
     description: 'Dharmic journalism bringing truth and authentic narratives to light.',
     images: ['/twitter-image.jpg'],
   },
-  
+
   // App-specific
   applicationName: 'Kurukshetra',
   appleWebApp: {
@@ -111,7 +111,7 @@ export const metadata: Metadata = {
     statusBarStyle: 'default',
     title: 'Kurukshetra',
   },
-  
+
   // Verification
   verification: {
     google: process.env.GOOGLE_VERIFICATION_ID,
@@ -121,11 +121,11 @@ export const metadata: Metadata = {
       'pinterest-site-verification': process.env.PINTEREST_VERIFICATION_ID || '',
     },
   },
-  
+
   // Additional metadata
   category: 'news',
   classification: 'News and Media',
-  
+
   // Robots
   robots: {
     index: true,
@@ -149,7 +149,7 @@ export const metadata: Metadata = {
     'yandex-verification': process.env.YANDEX_VERIFICATION_ID || '',
     'p:domain_verify': process.env.PINTEREST_VERIFICATION_ID || '',
   },
-  
+
 };
 
 export default function RootLayout({
@@ -239,13 +239,15 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://www.google-analytics.com" />
         <link rel="preconnect" href="https://platform.twitter.com" />
+        {/* <script async src="https://platform.twitter.com/widgets.js" charSet="u"/> */}
+
         <link rel="preconnect" href="https://www.youtube.com" />
       </head>
       <body className={`${inter.className} antialiased`}>
         <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-orange-600 text-white px-4 py-2 rounded-md z-50">
           Skip to main content
         </a>
-        
+
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <ClerkProvider>
             <div id="main-content">
@@ -254,7 +256,7 @@ export default function RootLayout({
           </ClerkProvider>
           <Toaster />
         </ThemeProvider>
-        
+
         {/* Analytics */}
         <Analytics />
         <SpeedInsights />

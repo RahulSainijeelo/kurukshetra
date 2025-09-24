@@ -168,7 +168,6 @@ export default function CreateArticlePage() {
   // Main form submission handler - ONLY called when user clicks publish
   const handlePublish = async () => {
     setLoading(true);
-    
     try {
       const body = {
           title: formData.title,
@@ -180,6 +179,7 @@ export default function CreateArticlePage() {
           images: formData.images || [],
           publishDate: new Date().toISOString(),
         }
+
       const response = await fetch('/api/articles', {
         method: 'POST',
         headers: { 
@@ -215,7 +215,7 @@ export default function CreateArticlePage() {
 
   return (
     <div className="min-h-screen bg-gray-50">      
-      <div className="container mx-auto !px-4 !pt-24 !pb-12">
+      <div className="container mx-auto !px-4 !pt-5 !pb-12">
         <div className="max-w-4xl mx-auto">
           
           {/* Header */}
@@ -260,7 +260,7 @@ export default function CreateArticlePage() {
 
           {/* Form Content - Removed onSubmit from form tag */}
           <div className="space-y-8">
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 md:p-8">
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 md:p-5">
               
               {currentStage === 1 && (
                 <StageOne 
@@ -293,7 +293,7 @@ export default function CreateArticlePage() {
             </div>
 
             {/* Navigation Buttons */}
-            <div className="flex justify-between items-center pt-6">
+            <div className="flex justify-between items-center pb-4">
               <Button
                 type="button"
                 variant="outline"

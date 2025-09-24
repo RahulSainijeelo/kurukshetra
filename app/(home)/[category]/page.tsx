@@ -40,7 +40,6 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
   const currentPage = parseInt(resolvedSearchParams.page || "1");
   const categoryName = resolvedParams.category;
   
-  // Get pagination info on server side
   const { totalPages } = await getCategoryPagination(categoryName, currentPage);
 
   return (

@@ -27,12 +27,16 @@ export default function HomePage() {
           </div>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 container mx-auto px-4 py-8">
-          <div className="lg:col-span-12 space-y-8">
+          <div className="lg:col-span-12 !mt-2 space-y-8">
             {/* <NewsReportsSection /> */}
             {/* <BollywoodSportsSection /> */}
             {/* <MediaSection /> */}
             <NationSection />
-            <DharmaSection />
+            <DharmaSection category="dharm" title="DHARMA" tag="SPIRITUAL"/>
+            <DharmaSection category="history" title="HISTORY"/>
+            <DharmaSection category="politics" title="POLITICS"/>
+            <DharmaSection category="globe" title="GLOBE"/>
+
             {/* <SpecialsSection /> */}
           </div>
         </div>

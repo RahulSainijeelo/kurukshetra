@@ -90,7 +90,6 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ cate
             timeAgo: calculateTimeAgo(doc.data()?.publishDate || '')
         }));
 
-        console.log(`Fetched ${data.length} articles for category: ${actualCategory}`);
         
         return NextResponse.json({
             data,
