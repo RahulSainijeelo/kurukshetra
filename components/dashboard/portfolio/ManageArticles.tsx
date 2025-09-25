@@ -30,15 +30,10 @@ interface ArticleFormState {
 
 const newsCategories = [
   "Politics",
-  "Opinions", 
-  "News Reports",
-  "Media",
-  "Bollywood & Sports",
   "Dharm",
   "Nation",
   "Globe",
   "History",
-  "About"
 ];
 
 const emptyForm: ArticleFormState = {

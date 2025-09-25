@@ -5,15 +5,10 @@ import moment from "moment"
 
 const categories = [
   "Politics",
-  "Opinions", 
-  "News Reports",
-  "Media",
-  "Bollywood & Sports",
   "Dharm",
   "Nation",
   "Globe",
   "History",
-  "About"
 ] as const;
 
 const preferences = [
