@@ -84,7 +84,7 @@ export function Footer() {
               </p>
               <div className="inline-block">
                 <div className="bg-gradient-to-r from-orange-500 to-red-600 text-white px-4 py-2 rounded-full text-xs font-bold tracking-wide">
-                  THE VOICE OF DHARMA
+                  THE VOICE OF DHARM
                 </div>
               </div>
             </div>

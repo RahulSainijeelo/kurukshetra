@@ -45,9 +45,9 @@ export function ArticleView({ article }: ArticleViewProps) {
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'long', 
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
       day: 'numeric',
       hour: '2-digit',
       minute: '2-digit'
@@ -73,14 +73,14 @@ export function ArticleView({ article }: ArticleViewProps) {
       {/* Featured Image */}
       {article.images && article.images.length > 0 && (
         <div className="aspect-video w-full mb-8 rounded-lg overflow-hidden shadow-lg">
-          <img 
-            src={article.images[0].url} 
+          <img
+            src={article.images[0].url}
             alt={article.title}
             className="w-full h-full object-cover"
           />
         </div>
       )}
-      
+
       {/* Article Header */}
       <header className="mb-8">
         <div className="mb-4">
@@ -88,46 +88,44 @@ export function ArticleView({ article }: ArticleViewProps) {
             {article.category}
           </Badge>
         </div>
-        
+
         <h1 className="text-4xl font-bold text-gray-900 mb-6 leading-tight">
           {article.title}
         </h1>
-        
+
         <p className="text-xl text-gray-600 mb-8 leading-relaxed font-light">
           {article.description || article.shortDescription}
         </p>
-        
+
         {/* Article Meta */}
         <div className="flex flex-col md:flex-row md:items-center justify-between bg-gray-50 rounded-lg p-4 mb-8">
           <div className="flex items-center space-x-6 mb-4 md:mb-0">
             <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center">
-               <span className="text-white font-bold text-xl">
-                <Image src="https://i.ibb.co/B2w6bXdt/Whats-App-Image-2025-09-25-at-22-45-33.jpg" width={64} height={64} alt="shubham"/>
-              </span>
+              <div className="w-10 h-10 rounded-full flex items-center justify-center">
+                <Image className="rounded-full" src="https://i.ibb.co/B2w6bXdt/Whats-App-Image-2025-09-25-at-22-45-33.jpg" width={64} height={64} alt="shubham" />
               </div>
               <div>
                 <p className="font-semibold text-gray-900">{article.author}</p>
                 <p className="text-sm text-gray-500">Author</p>
               </div>
             </div>
-            
+
             <div className="flex items-center space-x-1 text-gray-500">
               <Calendar className="w-4 h-4" />
               <span className="text-sm">{formatDate(article.publishDate)}</span>
             </div>
-            
+
             <div className="flex items-center space-x-1 text-gray-500">
               <Eye className="w-4 h-4" />
               <span className="text-sm">{viewCount.toLocaleString()} views</span>
             </div>
           </div>
-          
+
           {/* Action Buttons */}
           <div className="flex items-center space-x-2">
-            <Button 
-              variant="outline" 
-              size="sm" 
+            <Button
+              variant="outline"
+              size="sm"
               onClick={handleShare}
               className="flex items-center space-x-1"
             >
@@ -137,12 +135,12 @@ export function ArticleView({ article }: ArticleViewProps) {
           </div>
         </div>
       </header>
-      
+
       {/* Article Content */}
       <div className="prose prose-lg max-w-none mb-12">
         <ContentPreview content={article.content} key={article.id} />
       </div>
-      
+
       {/* Additional Images Gallery */}
       {article.images && article.images.length > 1 && (
         <div className="mb-12">
@@ -150,8 +148,8 @@ export function ArticleView({ article }: ArticleViewProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {article.images.slice(1).map((image, idx) => (
               <div key={idx} className="aspect-square rounded-lg overflow-hidden border shadow-sm hover:shadow-md transition-shadow">
-                <img 
-                  src={image.url} 
+                <img
+                  src={image.url}
                   alt={`Gallery image ${idx + 1}`}
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                 />
@@ -165,10 +163,8 @@ export function ArticleView({ article }: ArticleViewProps) {
       <footer className="border-t border-gray-200 pt-8">
         <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-lg p-6 border border-orange-200">
           <div className="flex items-center space-x-4 mb-4">
-            <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-xl">
-                <Image src="https://i.ibb.co/B2w6bXdt/Whats-App-Image-2025-09-25-at-22-45-33.jpg" width={64} height={64} alt="shubham"/>
-              </span>
+            <div className="w-10 h-10 rounded-full flex items-center justify-center">
+              <Image className="rounded-full" src="https://i.ibb.co/B2w6bXdt/Whats-App-Image-2025-09-25-at-22-45-33.jpg" width={64} height={64} alt="shubham" />
             </div>
             <div>
               <h4 className="text-lg font-semibold text-gray-900">About {article.author}</h4>
@@ -192,7 +188,7 @@ function ContentPreview({ content }: { content: string }) {
 
   useEffect(() => {
     setIsClient(true);
-    
+
     if (!content) {
       setProcessedContent('');
       return;
@@ -204,9 +200,9 @@ function ContentPreview({ content }: { content: string }) {
       .replace(/<script[^>]*src="https:\/\/platform\.twitter\.com\/widgets\.js"[^>]*><\/script>/g, '')
       .replace(/<script[^>]*async[^>]*src="https:\/\/platform\.twitter\.com\/widgets\.js"[^>]*><\/script>/g, '')
       .replace(/<script[^>]*charset="utf-8"[^>]*src="https:\/\/platform\.twitter\.com\/widgets\.js"[^>]*><\/script>/g, '')
-      
+
       // Handle YouTube embeds
-      .replace(/\[YOUTUBE\](https:\/\/(?:www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]+))\[\/YOUTUBE\]/g, 
+      .replace(/\[YOUTUBE\](https:\/\/(?:www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]+))\[\/YOUTUBE\]/g,
         (match, url, videoId) => {
           return `<div class="my-8">
             <div class="aspect-video w-full max-w-3xl mx-auto bg-gray-100 rounded-lg overflow-hidden border shadow-sm">
@@ -223,7 +219,7 @@ function ContentPreview({ content }: { content: string }) {
             </div>
           </div>`;
         })
-      
+
       // Handle Twitter embeds with actual Twitter widget (custom format)
       .replace(/\[TWITTER\](https:\/\/(?:twitter\.com|x\.com)\/(\w+)\/status\/(\d+))\[\/TWITTER\]/g,
         (match, url, username, tweetId) => {
@@ -234,7 +230,7 @@ function ContentPreview({ content }: { content: string }) {
             </blockquote>
           </div>`;
         })
-      
+
       // Handle basic markdown formatting
       .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-gray-900">$1</strong>')
       .replace(/\*(.*?)\*/g, '<em class="italic text-gray-800">$1</em>')
@@ -244,25 +240,25 @@ function ContentPreview({ content }: { content: string }) {
     // Convert line breaks to paragraphs
     const paragraphs = cleanedContent.split('\n\n').filter(p => p.trim());
     const htmlContent = paragraphs.map(paragraph => {
-      if (paragraph.includes('<div class="my-8">') || 
-          paragraph.includes('<blockquote') || 
-          paragraph.includes('<li class="list-disc')) {
+      if (paragraph.includes('<div class="my-8">') ||
+        paragraph.includes('<blockquote') ||
+        paragraph.includes('<li class="list-disc')) {
         return paragraph;
       }
       return `<p class="mb-6 leading-relaxed text-gray-800 text-lg">${paragraph.replace(/\n/g, '<br>')}</p>`;
     }).join('');
 
     setProcessedContent(htmlContent);
-    
+
   }, [content]);
 
   // Separate useEffect for Twitter widget loading with navigation fix
   useEffect(() => {
     if (!isClient || !processedContent) return;
-    
+
     // Check if there are Twitter widgets in the content
     const hasTwitterWidgets = processedContent.includes('twitter-tweet');
-    
+
     if (!hasTwitterWidgets) return;
 
     const loadTwitterWidgets = () => {
@@ -316,11 +312,11 @@ function ContentPreview({ content }: { content: string }) {
 
     // Use a timeout to ensure DOM is ready
     const timer = setTimeout(loadTwitterWidgets, 300);
-    
+
     return () => {
       clearTimeout(timer);
     };
-    
+
   }, [isClient, processedContent, widgetContainerId]);
 
   // Return placeholder during SSR and initial client render
@@ -341,7 +337,7 @@ function ContentPreview({ content }: { content: string }) {
   }
 
   return (
-    <div 
+    <div
       id={widgetContainerId}
       dangerouslySetInnerHTML={{ __html: processedContent }}
       className="twitter-content prose prose-lg max-w-none"
