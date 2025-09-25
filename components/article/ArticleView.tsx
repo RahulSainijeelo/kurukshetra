@@ -4,9 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { useEffect, useState } from "react";
 import { Calendar, User, Eye, Share2, BookmarkPlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-
+import Image from "next/image";
 interface Article {
   id: string;
   title: string;
@@ -104,9 +102,9 @@ export function ArticleView({ article }: ArticleViewProps) {
           <div className="flex items-center space-x-6 mb-4 md:mb-0">
             <div className="flex items-center space-x-2">
               <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-sm">
-                  {article.author.charAt(0).toUpperCase()}
-                </span>
+               <span className="text-white font-bold text-xl">
+                <Image src="https://i.ibb.co/B2w6bXdt/Whats-App-Image-2025-09-25-at-22-45-33.jpg" width={64} height={64} alt="shubham"/>
+              </span>
               </div>
               <div>
                 <p className="font-semibold text-gray-900">{article.author}</p>
@@ -169,7 +167,7 @@ export function ArticleView({ article }: ArticleViewProps) {
           <div className="flex items-center space-x-4 mb-4">
             <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center">
               <span className="text-white font-bold text-xl">
-                {article.author.charAt(0).toUpperCase()}
+                <Image src="https://i.ibb.co/B2w6bXdt/Whats-App-Image-2025-09-25-at-22-45-33.jpg" width={64} height={64} alt="shubham"/>
               </span>
             </div>
             <div>
@@ -178,8 +176,7 @@ export function ArticleView({ article }: ArticleViewProps) {
             </div>
           </div>
           <p className="text-gray-700 leading-relaxed">
-            {article.author} is a dedicated journalist committed to bringing truth and authentic narratives 
-            to light. Their work focuses on uncovering facts and presenting them with integrity and clarity.
+            {article.author} is a B.Tech student at NIT Srinagar. His writing is a pursuit of civilizational clarity, decoding the enduring war of ideas between Dharma and Adharma to understand Bharat's past, present, and future role.
           </p>
         </div>
       </footer>
