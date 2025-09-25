@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
 import { HeroSection } from "./HeroSection";
 
 interface Article {
@@ -19,52 +18,12 @@ interface Article {
   category?: string;
 }
 
-interface ApiResponse {
-  data: Article[];
-  pagination: {
-    currentPage: number;
-    limit: number;
-    totalCount: number;
-    totalPages: number;
-    hasNext: boolean;
-    hasPrev: boolean;
-  };
-  type: string;
+interface InFocusSectionProps {
+  topPicks: Article[];
+  error?: string;
 }
 
-export function InFocusSection() {
-  const [focusStory, setFocusStory] = useState<Article | null>(null);
-  const [heroArticles, setHeroArticles] = useState<Article[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchTopPicks = async () => {
-      try {
-        setLoading(true);
-        // Fetch 3 articles total - 1 for main focus, 2 for hero section
-        const response = await fetch('/api/articles?type=top-picks&limit=3');
-        if (!response.ok) {
-          throw new Error('Failed to fetch top picks');
-        }
-        const data: ApiResponse = await response.json();
-
-        if (data.data.length > 0) {
-          // First article goes to main focus
-          setFocusStory(data.data[0]);
-          // Remaining articles go to hero section (max 2)
-          setHeroArticles(data.data.slice(1, 3));
-        }
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'An error occurred');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchTopPicks();
-  }, []);
-
+export function InFocusSection({ topPicks, error }: InFocusSectionProps) {
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', {
@@ -74,35 +33,7 @@ export function InFocusSection() {
     });
   };
 
-  if (loading) {
-    return (
-      <>
-        <section className="bg-white">
-          <div className="relative mb-6">
-            <div className="bg-gradient-to-r from-orange-600 via-red-600 to-orange-700 px-6 py-3 rounded-lg shadow-lg">
-              <h2 className="text-2xl font-bold text-white tracking-wide">
-                🔥 TOP PICKS
-              </h2>
-            </div>
-          </div>
-
-          <div className="animate-pulse">
-            <div className="relative aspect-[16/10] mb-4 overflow-hidden rounded-lg bg-gray-200"></div>
-            <div className="h-6 bg-gray-200 rounded mb-2"></div>
-            <div className="h-6 bg-gray-200 rounded mb-3 w-4/5"></div>
-            <div className="flex items-center">
-              <div className="w-8 h-8 bg-gray-300 rounded-full mr-2"></div>
-              <div className="h-4 bg-gray-200 rounded w-24 mr-4"></div>
-              <div className="h-4 bg-gray-200 rounded w-32"></div>
-            </div>
-          </div>
-        </section>
-        <HeroSection articles={[]} loading={true} />
-      </>
-    );
-  }
-
-  if (error || !focusStory) {
+  if (error || !topPicks || topPicks.length === 0) {
     return (
       <>
         <section className="bg-white">
@@ -114,7 +45,7 @@ export function InFocusSection() {
             </div>
           </div>
           <p className="text-gray-600">
-            {error ? `Error loading top picks: ${error}` : 'No top picks available'}
+            {error || 'No top picks available'}
           </p>
           <Link
             href="/focus/top-picks"
@@ -123,10 +54,13 @@ export function InFocusSection() {
             View all top picks →
           </Link>
         </section>
-        <HeroSection articles={[]} loading={false} />
+        <HeroSection articles={[]} />
       </>
     );
   }
+
+  const focusStory = topPicks[0];
+  const heroArticles = topPicks.slice(1, 3);
 
   return (
     <>
@@ -143,7 +77,7 @@ export function InFocusSection() {
           </div>
         </div>
 
-        <Link href={`/news/${focusStory.id}`} className="group block">
+        <Link href={`/article/${focusStory.id}`} className="group block">
           <div className="relative aspect-[16/10] mb-4 overflow-hidden rounded-lg shadow-md border border-gray-200">
             <Image
               src={focusStory.images[0]?.url || '/api/placeholder/400/250'}
@@ -190,10 +124,9 @@ export function InFocusSection() {
         </Link>
       </section>
 
-      {
-        (heroArticles && heroArticles.length>0)?(<HeroSection articles={heroArticles} loading={loading} />):""
-
-      }
+      {heroArticles.length > 0 && (
+        <HeroSection articles={heroArticles} />
+      )}
     </>
   );
 }

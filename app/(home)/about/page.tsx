@@ -170,36 +170,6 @@ const AboutPage = () => {
               </div>
             </div>
           </div>
-
-          {/* Newsletter Signup */}
-          <div className="mt-8 pt-8 border-t border-orange-200">
-            <div className="text-center">
-              <h3 className="text-xl font-semibold mb-4 text-gray-800">Join the Movement</h3>
-              <p className="text-gray-600 mb-6">Subscribe to receive our latest articles and updates directly in your inbox</p>
-              <div className="flex flex-col sm:flex-row max-w-md mx-auto gap-3">
-                <input 
-                  type="email" 
-                  placeholder="Enter your email" 
-                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
-                />
-                <button className="bg-orange-600 text-white px-6 py-2 rounded-lg hover:bg-orange-700 transition-colors">
-                  Subscribe
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Final Call to Action */}
-        <div className="mt-16 text-center bg-gradient-to-r from-orange-600 to-red-600 text-white rounded-lg p-8">
-          <h2 className="text-2xl font-bold mb-4">धर्मक्षेत्रे कुरुक्षेत्रे</h2>
-          <p className="text-lg mb-6">The battlefield of righteousness awaits. Will you answer the call?</p>
-          <Link 
-            href="/article/latest" 
-            className="inline-block bg-white text-orange-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
-          >
-            Begin Your Journey
-          </Link>
         </div>
       </main>
     </div>

@@ -167,24 +167,6 @@ export function ArticleSidebar({ currentArticleId, category }: ArticleSidebarPro
           </div>
         </div>
       )}
-
-      {/* Newsletter Signup */}
-      <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-lg border border-orange-200 p-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-2">Stay Updated</h3>
-        <p className="text-sm text-gray-600 mb-4">
-          Get the latest articles delivered to your inbox
-        </p>
-        <div className="space-y-3">
-          <input
-            type="email"
-            placeholder="Your email address"
-            className="w-full px-3 py-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
-          />
-          <button className="w-full bg-orange-600 text-white py-2 rounded text-sm font-medium hover:bg-orange-700 transition-colors">
-            Subscribe
-          </button>
-        </div>
-      </div>
     </div>
   );
 }

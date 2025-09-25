@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
 
 interface Article {
   id: string;
@@ -18,45 +17,12 @@ interface Article {
   category?: string;
 }
 
-interface ApiResponse {
-  data: Article[];
-  pagination: {
-    currentPage: number;
-    limit: number;
-    totalCount: number;
-    totalPages: number;
-    hasNext: boolean;
-    hasPrev: boolean;
-  };
-  category: string;
+interface NationSectionProps {
+  articles: Article[];
+  error?: string;
 }
 
-export function NationSection() {
-  const [nationArticles, setNationArticles] = useState<Article[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchNationArticles = async () => {
-      try {
-        setLoading(true);
-        // Fetch from the category API for Nation articles, limit to 2
-        const response = await fetch('/api/articles/category/nation?limit=2&page=1');
-        if (!response.ok) {
-          throw new Error('Failed to fetch nation articles');
-        }
-        const data: ApiResponse = await response.json();
-        setNationArticles(data.data || []);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'An error occurred');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchNationArticles();
-  }, []);
-
+export function NationSection({ articles, error }: NationSectionProps) {
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', {
@@ -66,61 +32,22 @@ export function NationSection() {
     });
   };
 
-  if (loading) {
+  if (error || !articles || articles.length === 0) {
     return (
       <section className="bg-white">
-        <div className="relative mb-6">
-          <div className="bg-gradient-to-r from-green-600 via-emerald-600 to-green-700 px-6 py-3 rounded-lg shadow-lg border-l-4 border-lime-400">
-            <h2 className="text-2xl font-bold text-white tracking-wide flex items-center">
-              <span className="mr-2">🇮🇳</span>
-              BHARAT
-              <span className="ml-2 text-sm bg-lime-400 text-green-800 px-2 py-1 rounded-full font-semibold">
-                LATEST
-              </span>
-            </h2>
-          </div>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {[...Array(2)].map((_, index) => (
-            <div key={index} className="bg-white border border-gray-200 rounded-lg overflow-hidden animate-pulse">
-              <div className="relative aspect-[16/10] bg-gray-200"></div>
-              <div className="p-4">
-                <div className="h-5 bg-gray-200 rounded mb-2"></div>
-                <div className="h-5 bg-gray-200 rounded mb-2 w-4/5"></div>
-                <div className="h-3 bg-gray-200 rounded mb-3 w-full"></div>
-                <div className="flex items-center">
-                  <div className="h-3 bg-gray-200 rounded w-20 mr-4"></div>
-                  <div className="h-3 bg-gray-200 rounded w-24"></div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-    );
-  }
-
-  if (error || nationArticles.length === 0) {
-    return (
-      <section className="bg-white">
-        <div className="relative mb-6">
-          <div className="bg-gradient-to-r from-green-600 via-emerald-600 to-green-700 px-6 py-3 rounded-lg shadow-lg border-l-4 border-lime-400">
-            <h2 className="text-2xl font-bold text-white tracking-wide flex items-center">
-              <span className="mr-2">🇮🇳</span>
-              BHARAT
-              <span className="ml-2 text-sm bg-lime-400 text-green-800 px-2 py-1 rounded-full font-semibold">
-                LATEST
-              </span>
-            </h2>
-          </div>
+        <div className="mb-8">
+          <h2 className="text-3xl font-bold text-gray-900 flex items-center">
+            <span className="mr-3 text-2xl">🇮🇳</span>
+            BHARAT
+          </h2>
+          <div className="w-16 h-1 bg-green-600 mt-2"></div>
         </div>
         <p className="text-gray-600 text-center py-8">
-          {error ? `Error loading nation articles: ${error}` : 'No nation articles available'}
+          {error || 'No nation articles available'}
         </p>
         <div className="text-center">
           <Link 
-            href="/nation" 
+            href="/category/nation" 
             className="inline-block bg-gradient-to-r from-green-600 to-emerald-600 text-white px-4 py-2 rounded-lg font-medium text-sm hover:from-green-700 hover:to-emerald-700 transition-all shadow-md"
           >
             View all nation articles →
@@ -132,20 +59,16 @@ export function NationSection() {
 
   return (
     <section className="bg-white">
-      <div className="relative mb-6">
-        <div className="bg-gradient-to-r from-green-600 via-emerald-600 to-green-700 px-6 py-3 rounded-lg shadow-lg border-l-4 border-lime-400">
-          <h2 className="text-2xl font-bold text-white tracking-wide flex items-center">
-            <span className="mr-2">🇮🇳</span>
-            NATION
-            <span className="ml-2 text-sm bg-lime-400 text-green-800 px-2 py-1 rounded-full font-semibold">
-              LATEST
-            </span>
-          </h2>
-        </div>
+      <div className="mb-8">
+        <h2 className="text-3xl font-bold text-gray-900 flex items-center">
+          <span className="mr-3 text-2xl">🇮🇳</span>
+          BHARAT
+        </h2>
+        <div className="w-16 h-1 bg-green-600 mt-2"></div>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {nationArticles.map((article) => (
+        {articles.map((article) => (
           <Link key={article.id} href={`/article/${article.id}`} className="group">
             <div className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300">
               <div className="relative aspect-[16/10] overflow-hidden">
@@ -156,7 +79,7 @@ export function NationSection() {
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 <div className="absolute top-3 right-3 bg-green-600 text-white px-2 py-1 rounded-full text-xs font-bold shadow-lg">
-                  NATION
+                  BHARAT
                 </div>
               </div>
               <div className="p-4">
@@ -183,10 +106,9 @@ export function NationSection() {
         ))}
       </div>
 
-      {/* View All Button */}
       <div className="text-center mt-6">
         <Link 
-          href="/nation" 
+          href="/category/nation" 
           className="inline-block bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-3 rounded-lg font-medium text-sm hover:from-green-700 hover:to-emerald-700 transition-all shadow-md"
         >
           View all nation articles →

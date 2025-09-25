@@ -12,7 +12,6 @@ import name from "@/public/images/logo_name.png"
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [currentTime, setCurrentTime] = useState("");
   const { isSignedIn } = useUser();
 
@@ -46,9 +45,9 @@ export function Header() {
 
   const navigationTabs = ["History", "Dharm", "Nation", "Politics", "Globe", "About"];
   const socialIcons = [
-    { Icon: Youtube, href: "#", color: "#FF0000" },
-    { Icon: Instagram, href: "#", color: "#E4405F" },
-    { Icon: Facebook, href: "#", color: "#1877F2" },
+    { Icon: Youtube, href: "https://youtube.com/@kuruksetra?si=GP3gQCFzJv0f4k3g", color: "#FF0000" },
+    { Icon: Instagram, href: "https://instagram.com/kurukshetra108/", color: "#E4405F" },
+    // { Icon: Facebook, href: "#", color: "#1877F2" },
   ];
 
   return (
@@ -120,7 +119,7 @@ export function Header() {
           {/* Desktop Navigation - unchanged */}
           <nav className="hidden md:flex items-center justify-center space-x-8 py-[3px]">
             {navigationTabs.map((tab, index) => (
-              <NavLink key={index} href={`/${tab.toLowerCase()}`}>
+              <NavLink key={index} href={`/category/${tab.toLowerCase()}`}>
                 {tab}
               </NavLink>
             ))}
@@ -136,7 +135,7 @@ export function Header() {
               }}
             >
               {navigationTabs.map((tab, index) => (
-                <MobileNavLink key={index} href={`/${tab.toLowerCase()}`}>
+                <MobileNavLink key={index} href={`/category/${tab.toLowerCase()}`}>
                   {tab}
                 </MobileNavLink>
               ))}

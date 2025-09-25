@@ -1,94 +1,122 @@
 'use client';
 
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface CategoryPaginationProps {
   currentPage: number;
   totalPages: number;
   category: string;
+  hasNext?: boolean;
+  hasPrev?: boolean;
 }
 
-export function CategoryPagination({ currentPage, totalPages, category }: CategoryPaginationProps) {
-  const router = useRouter();
-
+export function CategoryPagination({ 
+  currentPage, 
+  totalPages, 
+  category, 
+  hasNext = false, 
+  hasPrev = false 
+}: CategoryPaginationProps) {
   if (totalPages <= 1) return null;
 
   const generatePageNumbers = () => {
     const pages = [];
-    const maxVisiblePages = 7;
-    
-    if (totalPages <= maxVisiblePages) {
-      for (let i = 1; i <= totalPages; i++) {
-        pages.push(i);
-      }
-    } else {
-      if (currentPage <= 4) {
-        for (let i = 1; i <= 5; i++) {
-          pages.push(i);
-        }
-        pages.push('...');
-        pages.push(totalPages);
-      } else if (currentPage >= totalPages - 3) {
-        pages.push(1);
-        pages.push('...');
-        for (let i = totalPages - 4; i <= totalPages; i++) {
-          pages.push(i);
-        }
-      } else {
-        pages.push(1);
-        pages.push('...');
-        for (let i = currentPage - 1; i <= currentPage + 1; i++) {
-          pages.push(i);
-        }
-        pages.push('...');
-        pages.push(totalPages);
-      }
+    const showPages = 5; // Number of page buttons to show
+    let startPage = Math.max(1, currentPage - Math.floor(showPages / 2));
+    let endPage = Math.min(totalPages, startPage + showPages - 1);
+
+    // Adjust start page if we're near the end
+    if (endPage - startPage < showPages - 1) {
+      startPage = Math.max(1, endPage - showPages + 1);
     }
-    
+
+    for (let i = startPage; i <= endPage; i++) {
+      pages.push(i);
+    }
+
     return pages;
   };
 
+  const pageNumbers = generatePageNumbers();
+
   return (
-    <div className="flex justify-center items-center space-x-2 mt-12">
+    <div className="flex items-center justify-center space-x-2 mt-12 py-8">
       {/* Previous Button */}
-      {currentPage > 1 && (
-        <Link
+      {hasPrev && currentPage > 1 ? (
+        <Link 
           href={`/${category}?page=${currentPage - 1}`}
-          className="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 text-gray-700"
+          className="flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-orange-600 transition-colors"
         >
+          <ChevronLeft className="w-4 h-4 mr-1" />
           Previous
         </Link>
+      ) : (
+        <div className="flex items-center px-3 py-2 text-sm font-medium text-gray-400 bg-gray-100 border border-gray-200 rounded-lg cursor-not-allowed">
+          <ChevronLeft className="w-4 h-4 mr-1" />
+          Previous
+        </div>
+      )}
+
+      {/* First page */}
+      {pageNumbers[0] > 1 && (
+        <>
+          <Link
+            href={`/${category}?page=1`}
+            className="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-orange-600 transition-colors"
+          >
+            1
+          </Link>
+          {pageNumbers[0] > 2 && (
+            <span className="px-2 py-2 text-gray-500">...</span>
+          )}
+        </>
       )}
 
       {/* Page Numbers */}
-      {generatePageNumbers().map((page, index) => (
-        <div key={index}>
-          {page === '...' ? (
-            <span className="px-3 py-2 text-gray-500">...</span>
-          ) : (
-            <Link
-              href={`/${category}?page=${page}`}
-              className={`px-4 py-2 border rounded-md transition-colors ${
-                page === currentPage
-                  ? 'bg-orange-600 text-white border-orange-600'
-                  : 'border-gray-300 hover:bg-gray-50 text-gray-700'
-              }`}
-            >
-              {page}
-            </Link>
-          )}
-        </div>
+      {pageNumbers.map((page) => (
+        <Link
+          key={page}
+          href={`/${category}?page=${page}`}
+          className={`px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
+            page === currentPage
+              ? 'text-white bg-orange-600 border border-orange-600'
+              : 'text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 hover:text-orange-600'
+          }`}
+        >
+          {page}
+        </Link>
       ))}
 
+      {/* Last page */}
+      {pageNumbers[pageNumbers.length - 1] < totalPages && (
+        <>
+          {pageNumbers[pageNumbers.length - 1] < totalPages - 1 && (
+            <span className="px-2 py-2 text-gray-500">...</span>
+          )}
+          <Link
+            href={`/${category}?page=${totalPages}`}
+            className="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-orange-600 transition-colors"
+          >
+            {totalPages}
+          </Link>
+        </>
+      )}
+
       {/* Next Button */}
-      {currentPage < totalPages && (
-        <Link
+      {hasNext && currentPage < totalPages ? (
+        <Link 
           href={`/${category}?page=${currentPage + 1}`}
-          className="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 text-gray-700"
+          className="flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-orange-600 transition-colors"
         >
           Next
+          <ChevronRight className="w-4 h-4 ml-1" />
         </Link>
+      ) : (
+        <div className="flex items-center px-3 py-2 text-sm font-medium text-gray-400 bg-gray-100 border border-gray-200 rounded-lg cursor-not-allowed">
+          Next
+          <ChevronRight className="w-4 h-4 ml-1" />
+        </div>
       )}
     </div>
   );

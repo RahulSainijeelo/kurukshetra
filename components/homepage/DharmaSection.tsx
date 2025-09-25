@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
 
 interface Article {
   id: string;
@@ -18,45 +17,16 @@ interface Article {
   category?: string;
 }
 
-interface ApiResponse {
-  data: Article[];
-  pagination: {
-    currentPage: number;
-    limit: number;
-    totalCount: number;
-    totalPages: number;
-    hasNext: boolean;
-    hasPrev: boolean;
-  };
+interface DharmaSectionProps {
   category: string;
+  title: string;
+  tag?: string;
+  emoji?: string;
+  articles: Article[];
+  error?: string;
 }
 
-export function DharmaSection({ category, tag, title, emoji }: any) {
-  const [dharmaArticles, setDharmaArticles] = useState<Article[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchDharmaArticles = async () => {
-      try {
-        setLoading(true);
-        // Fetch from the category API for Dharma articles, limit to 4
-        const response = await fetch(`/api/articles/category/${category}?limit=4&page=1`);
-        if (!response.ok) {
-          throw new Error('Failed to fetch dharma articles');
-        }
-        const data: ApiResponse = await response.json();
-        setDharmaArticles(data.data || []);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'An error occurred');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchDharmaArticles();
-  }, []);
-
+export function DharmaSection({ category, title, tag, emoji, articles, error }: DharmaSectionProps) {
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', {
@@ -66,58 +36,42 @@ export function DharmaSection({ category, tag, title, emoji }: any) {
     });
   };
 
-  if (loading) {
+  // Get color scheme based on category
+  const getColorScheme = () => {
+    const schemes = {
+      dharm: { color: 'orange-600', bgColor: 'orange-50', hoverBg: 'from-orange-50 to-amber-50' },
+      history: { color: 'purple-600', bgColor: 'purple-50', hoverBg: 'from-purple-50 to-indigo-50' },
+      politics: { color: 'red-600', bgColor: 'red-50', hoverBg: 'from-red-50 to-pink-50' },
+      globe: { color: 'blue-600', bgColor: 'blue-50', hoverBg: 'from-blue-50 to-cyan-50' },
+      default: { color: 'gray-600', bgColor: 'gray-50', hoverBg: 'from-gray-50 to-slate-50' }
+    };
+    return schemes[category as keyof typeof schemes] || schemes.default;
+  };
+
+  const colorScheme = getColorScheme();
+
+  if (error || !articles || articles.length === 0) {
     return (
       <section className="bg-white">
-        <div className="relative mb-6">
-          <div className="bg-gradient-to-r from-amber-600 via-orange-600 to-amber-700 px-6 py-3 rounded-lg shadow-lg border-l-4 border-yellow-400">
-            <h2 className="text-2xl font-bold text-white tracking-wide flex items-center">
-              {emoji && <span className="mr-2">{emoji}</span>}
-              {category.toUpperCase()}
-               {tag &&  <span className="ml-2 text-sm bg-yellow-400 text-amber-800 px-2 py-1 rounded-full font-semibold">
-              {tag}
-            </span>}
-            </h2>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {[...Array(4)].map((_, index) => (
-            <div key={index} className="flex space-x-4 animate-pulse">
-              <div className="relative w-32 h-20 flex-shrink-0 overflow-hidden rounded-md bg-gray-200"></div>
-              <div className="flex-1">
-                <div className="h-4 bg-gray-200 rounded mb-2"></div>
-                <div className="h-4 bg-gray-200 rounded mb-2 w-4/5"></div>
-                <div className="h-3 bg-gray-200 rounded w-20"></div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-    );
-  }
-
-  if (error || dharmaArticles.length === 0) {
-    return (
-      <section className="bg-white">
-        <div className="relative mb-6">
-          <div className="bg-gradient-to-r from-amber-600 via-orange-600 to-amber-700 px-6 py-3 rounded-lg shadow-lg border-l-4 border-yellow-400">
-            <h2 className="text-2xl font-bold text-white tracking-wide flex items-center">
-              {emoji && <span className="mr-2">{emoji}</span>}
-              {title}
-               {tag &&  <span className="ml-2 text-sm bg-yellow-400 text-amber-800 px-2 py-1 rounded-full font-semibold">
-              {tag}
-            </span>}
-            </h2>
-          </div>
+        <div className="mb-8">
+          <h2 className="text-3xl font-bold text-gray-900 flex items-center">
+            {emoji && <span className="mr-3 text-2xl">{emoji}</span>}
+            {title}
+            {tag && (
+              <span className={`ml-3 text-xs bg-${colorScheme.color} bg-opacity-10 text-${colorScheme.color} px-2 py-1 rounded-full font-semibold uppercase tracking-wide`}>
+                {tag}
+              </span>
+            )}
+          </h2>
+          <div className={`w-16 h-1 bg-${colorScheme.color} mt-2`}></div>
         </div>
         <p className="text-gray-600 text-center py-8">
-          {error ? `Error loading dharma articles: ${error}` : `No ${title.toLowerCase()} articles available`}
+          {error || `No ${title.toLowerCase()} articles available`}
         </p>
         <div className="text-center">
           <Link
-            href="/dharm"
-            className="inline-block bg-gradient-to-r from-amber-600 to-orange-600 text-white px-4 py-2 rounded-lg font-medium text-sm hover:from-amber-700 hover:to-orange-700 transition-all shadow-md"
+            href={`/category/${category}`}
+            className={`inline-block bg-${colorScheme.color} text-white px-4 py-2 rounded-lg font-medium text-sm hover:bg-${colorScheme.color} hover:bg-opacity-90 transition-all`}
           >
             View all {title.toLowerCase()} articles →
           </Link>
@@ -128,23 +82,23 @@ export function DharmaSection({ category, tag, title, emoji }: any) {
 
   return (
     <section className="bg-white">
-      <div className="relative mb-6">
-        <div className="bg-gradient-to-r from-amber-600 via-orange-600 to-amber-700 px-6 py-3 rounded-lg shadow-lg border-l-4 border-yellow-400">
-          <h2 className="text-2xl font-bold text-white tracking-wide flex items-center">
-            {emoji && <span className="mr-2">{emoji}</span>}
-
-            {title}
-           {tag &&  <span className="ml-2 text-sm bg-yellow-400 text-amber-800 px-2 py-1 rounded-full font-semibold">
+      <div className="mb-8">
+        <h2 className="text-3xl font-bold text-gray-900 flex items-center">
+          {emoji && <span className="mr-3 text-2xl">{emoji}</span>}
+          {title}
+          {tag && (
+            <span className={`ml-3 text-xs bg-${colorScheme.color} bg-opacity-10 text-${colorScheme.color} px-2 py-1 rounded-full font-semibold uppercase tracking-wide`}>
               {tag}
-            </span>}
-          </h2>
-        </div>
+            </span>
+          )}
+        </h2>
+        <div className={`w-16 h-1 bg-${colorScheme.color} mt-2`}></div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {dharmaArticles.map((article) => (
+        {articles.map((article) => (
           <Link key={article.id} href={`/article/${article.id}`} className="group">
-            <div className="flex space-x-4 p-3 rounded-lg hover:bg-gradient-to-r hover:from-amber-50 hover:to-orange-50 transition-all duration-300">
+            <div className={`flex space-x-4 p-3 rounded-lg hover:bg-gradient-to-r hover:${colorScheme.hoverBg} transition-all duration-300`}>
               <div className="relative w-32 h-20 flex-shrink-0 overflow-hidden rounded-md shadow-md border border-gray-200">
                 <Image
                   src={article.images[0]?.url || '/api/placeholder/200/150'}
@@ -152,12 +106,12 @@ export function DharmaSection({ category, tag, title, emoji }: any) {
                   fill
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
                 />
-                <div className="absolute top-1 right-1 bg-amber-600 text-white px-1 py-0.5 rounded text-xs font-bold">
-                  धर्म
+                <div className={`absolute top-1 right-1 bg-${colorScheme.color} text-white px-1 py-0.5 rounded text-xs font-bold`}>
+                  {category === 'dharm' ? 'धर्म' : title.slice(0, 3)}
                 </div>
               </div>
               <div className="flex-1">
-                <h3 className="text-sm font-semibold text-gray-900 line-clamp-3 group-hover:text-amber-600 transition-colors mb-2">
+                <h3 className={`text-sm font-semibold text-gray-900 line-clamp-3 group-hover:text-${colorScheme.color} transition-colors mb-2`}>
                   {article.title}
                 </h3>
                 {article.description && (
@@ -166,7 +120,7 @@ export function DharmaSection({ category, tag, title, emoji }: any) {
                   </p>
                 )}
                 <div className="flex items-center text-xs text-gray-500">
-                  <div className="w-4 h-4 bg-gradient-to-r from-amber-400 to-orange-400 rounded-full mr-2 flex items-center justify-center">
+                  <div className={`w-4 h-4 bg-${colorScheme.color} rounded-full mr-2 flex items-center justify-center`}>
                     <span className="text-xs font-bold text-white">
                       {article.author.charAt(0).toUpperCase()}
                     </span>
@@ -180,11 +134,10 @@ export function DharmaSection({ category, tag, title, emoji }: any) {
         ))}
       </div>
 
-      {/* View All Button */}
       <div className="text-center mt-6">
         <Link
-          href="/dharm"
-          className="inline-block bg-gradient-to-r from-amber-600 to-orange-600 text-white px-6 py-3 rounded-lg font-medium text-sm hover:from-amber-700 hover:to-orange-700 transition-all shadow-md"
+          href={`/category/${category}`}
+          className={`inline-block bg-${colorScheme.color} text-white px-6 py-3 rounded-lg font-medium text-sm hover:bg-${colorScheme.color} hover:bg-opacity-90 transition-all`}
         >
           View all {title.toLowerCase()} articles →
         </Link>
