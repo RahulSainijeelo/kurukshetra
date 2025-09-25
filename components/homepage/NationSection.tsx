@@ -50,7 +50,7 @@ export function NationSection({ articles, error }: NationSectionProps) {
             href="/category/nation" 
             className="inline-block bg-gradient-to-r from-green-600 to-emerald-600 text-white px-4 py-2 rounded-lg font-medium text-sm hover:from-green-700 hover:to-emerald-700 transition-all shadow-md"
           >
-            View all nation articles →
+            View all bharat articles →
           </Link>
         </div>
       </section>
@@ -111,7 +111,7 @@ export function NationSection({ articles, error }: NationSectionProps) {
           href="/category/nation" 
           className="inline-block bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-3 rounded-lg font-medium text-sm hover:from-green-700 hover:to-emerald-700 transition-all shadow-md"
         >
-          View all nation articles →
+          View all bharat articles →
         </Link>
       </div>
     </section>

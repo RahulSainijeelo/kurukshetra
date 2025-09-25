@@ -12,15 +12,13 @@ interface ArticlePageProps {
     id: string;
   }>;
 }
-
-// Fetch article data on the server side
 async function getArticle(id: string) {
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/articles/${id}`,
       { 
         cache: 'no-store',
-        next: { revalidate: 300 } // Cache for 5 minutes
+        next: { revalidate: 300 }
       }
     );
 
@@ -39,9 +37,7 @@ async function getArticle(id: string) {
   }
 }
 
-// Helper functions
 function extractKeywords(content: string): string[] {
-  // Simple keyword extraction (you can enhance this with NLP libraries)
   const stopWords = ['the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by', 'is', 'are', 'was', 'were', 'be', 'been', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'should', 'could', 'may', 'might', 'must', 'can'];
   
   return content
@@ -142,16 +138,27 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   };
 }
 
+async function increaseView(_id:any) {
+  try {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+     const res = await fetch(`${baseUrl}/api/articles/${_id}/view`);
+     return ""
+  } catch (error) {
+    console.log('Error fetching latest articles:');
+    return "";
+  }
+}
+
 export default async function ArticlePage({ params }: ArticlePageProps) {
   const resolvedParams = await params;
   const { id } = resolvedParams;
   const article = await getArticle(id);
-
+  console.log(id)
+  await increaseView(id);
   if (!article) {
     notFound();
   }
 
-  // Generate article structured data
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "NewsArticle",

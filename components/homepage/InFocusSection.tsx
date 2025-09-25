@@ -40,7 +40,7 @@ export function InFocusSection({ topPicks, error }: InFocusSectionProps) {
           <div className="relative mb-6">
             <div className="bg-gradient-to-r from-orange-600 via-red-600 to-orange-700 px-6 py-3 rounded-lg shadow-lg">
               <h2 className="text-2xl font-bold text-white tracking-wide">
-                🔥 TOP PICKS
+                TOP PICKS
               </h2>
             </div>
           </div>
@@ -68,11 +68,7 @@ export function InFocusSection({ topPicks, error }: InFocusSectionProps) {
         <div className="relative mb-6">
           <div className="bg-gradient-to-r from-orange-600 via-red-600 to-orange-700 px-6 py-3 rounded-lg shadow-lg border-l-4 border-yellow-400">
             <h2 className="text-2xl font-bold text-white tracking-wide flex items-center">
-              <span className="mr-2">🔥</span>
               TOP PICKS
-              <span className="ml-2 text-sm bg-yellow-400 text-orange-800 px-2 py-1 rounded-full font-semibold">
-                FEATURED
-              </span>
             </h2>
           </div>
         </div>

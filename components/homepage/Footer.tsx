@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import {  Instagram, Youtube, Mail,} from "lucide-react";
+import { Instagram, Youtube, Mail, Facebook, Twitter, } from "lucide-react";
 import logo from "@/public/images/logo.png"
 import name from "@/public/images/logo_name.png"
 
@@ -20,14 +20,28 @@ export function Footer() {
       color: "hover:text-white hover:bg-red-600",
       bgColor: "bg-red-600"
     },
+    {
+      Icon: Twitter,
+      href: "https://x.com/KURUKSHETRA108?t=-cOx8DWUZF3Oab9z5HNv2g&s=08",
+      label: "Twitter",
+      color: "hover:text-white hover:bg-red-600",
+      bgColor: "bg-red-600"
+    },
+     {
+      Icon: Facebook,
+      href: "https://youtube.com/@kuruksetra?si=GP3gQCFzJv0f4k3g",
+      label: "Facebook",
+      color: "hover:text-white hover:bg-red-600",
+      bgColor: "bg-blue-600"
+    },
   ];
 
   const quickLinks = [
     { text: "Home", href: "/" },
     { text: "Politics", href: "/category/politics" },
     { text: "Dharm", href: "/category/dharm" },
-    { text: "Nation", href: "/category/nation" },
-    { text: "Globe", href: "/category/globe" },
+    { text: "Bharat", href: "/category/nation" },
+    { text: "Global", href: "/category/globe" },
     { text: "History", href: "/category/history" }
   ];
 
@@ -41,10 +55,10 @@ export function Footer() {
   return (
     <footer className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white mt-2">
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500 via-red-500 to-orange-600"></div>
-      
+
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12 py-4">
-          
+
           <div className="lg:col-span-2 space-y-6">
             <div className="flex items-center space-x-3 mb-6">
               <div className="relative">
@@ -64,8 +78,8 @@ export function Footer() {
                 Our Mission
               </h3>
               <p className="text-gray-300 leading-relaxed text-sm mb-6">
-                KURUKSHETRA is the intellectual battlefield for the soul of Bharat. 
-                In an age where mainstream narratives systematically suppress indigenous truths, 
+                KURUKSHETRA is the intellectual battlefield for the soul of Bharat.
+                In an age where mainstream narratives systematically suppress indigenous truths,
                 we stand as a vanguard for civilizational reclamation.
               </p>
               <div className="inline-block">
@@ -181,7 +195,7 @@ export function Footer() {
           <div className="mt-8 text-center">
             <div className="inline-flex items-center space-x-2 text-xs text-gray-500">
               <div className="w-8 h-px bg-gradient-to-r from-transparent to-orange-500"></div>
-              <span className="font-sanskrit text-orange-400">ॐ सत्यमेव जयते</span>
+              <span className="font-sanskrit text-orange-400">सत्यमेव जयते</span>
               <div className="w-8 h-px bg-gradient-to-l from-transparent to-orange-500"></div>
             </div>
           </div>

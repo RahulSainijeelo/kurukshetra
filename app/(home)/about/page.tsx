@@ -3,6 +3,7 @@ import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/homepage/Footer';
 import { Facebook, Twitter, Instagram, Youtube, Mail, Phone } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: "About Kurukshetra - Take You to the Reality",
@@ -24,7 +25,6 @@ const AboutPage = () => {
           {/* Sanskrit Verses */}
           <div className="bg-gradient-to-br from-orange-50 to-red-50 rounded-lg p-8 mb-8 border border-orange-200">
             <div className="text-center mb-6">
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">श्रीमद्भगवद्गीता</h2>
               <div className="text-lg leading-relaxed text-gray-700 font-medium">
                 <p className="mb-2">"यदा यदा हि धर्मस्य ग्लानिर्भवति भारत ।</p>
                 <p className="mb-2">अभ्युत्थानमधर्मस्य तदात्मानं सृजाम्यहम्‌ ॥</p>
@@ -58,7 +58,10 @@ const AboutPage = () => {
             </p>
 
             <div className="bg-gray-50 rounded-lg p-8 my-12 border border-gray-200">
-              <h3 className="text-2xl font-bold text-orange-600 mb-4 text-center">Our Inspiration: Shri Rajiv Dixit</h3>
+              <div className='flex justify-center'>
+                <Image className='border-r-2 rounded-full' src="https://i.ibb.co/zWRRjQXX/099ebea2-575c-43fe-a921-47cf3c4eb2be.jpg" width={250} height={250} alt='placeholder'/>
+              </div>
+              <h3 className="text-2xl font-bold text-orange-600 my-4 text-center">Our Inspiration: Shri Rajiv Dixit</h3>
               <p className="mb-4">
                 The foundational ethos of this initiative is a profound debt to the legacy of the late Shri Rajiv Dixit. His life's work stands as the ultimate source of inspiration and the intellectual bedrock upon which our resolve is built. A visionary orator and a meticulous researcher, Shri Rajiv Dixit dedicated his existence to the awakening of the Bharatiya spirit, arming the common citizen with irrefutable facts, historical evidence, and a powerful critique of systemic biases. It was through his seminal lectures that the architecture of our understanding was first formed. His unwavering commitment to uncovering the truths of Bharat's history, its scientific heritage, and its economic subjugation provided the very lens through which we analyze the contemporary crisis. This website is, in many ways, a continuation of his unfinished revolution—an endeavor to translate his oral legacy into an enduring literary and scholarly movement.
               </p>
@@ -81,40 +84,6 @@ const AboutPage = () => {
             </div>
           </div>
         </div>
-
-        {/* Managing Team Section */}
-        <div className="mt-16 bg-white rounded-lg shadow-lg p-8 border border-gray-200">
-          <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">Our Editorial Team</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Add team members as needed */}
-            <div className="text-center">
-              <div className="w-32 h-32 bg-orange-100 rounded-full mx-auto mb-4 flex items-center justify-center">
-                <span className="text-orange-600 text-3xl font-bold">ED</span>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Editor-in-Chief</h3>
-              <p className="text-gray-600 mb-4">Leading the editorial vision and maintaining journalistic integrity</p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-32 h-32 bg-orange-100 rounded-full mx-auto mb-4 flex items-center justify-center">
-                <span className="text-orange-600 text-3xl font-bold">SR</span>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Senior Researcher</h3>
-              <p className="text-gray-600 mb-4">Ensuring factual accuracy and historical authenticity</p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-32 h-32 bg-orange-100 rounded-full mx-auto mb-4 flex items-center justify-center">
-                <span className="text-orange-600 text-3xl font-bold">CA</span>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Cultural Analyst</h3>
-              <p className="text-gray-600 mb-4">Interpreting contemporary events through Indic perspectives</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Social Media & Contact Section */}
         <div className="mt-16 bg-gradient-to-br from-orange-50 to-red-50 rounded-lg p-8 border border-orange-200">
           <h2 className="text-3xl font-bold text-center mb-8 text-gray-900">Connect With Us</h2>
           
@@ -123,19 +92,19 @@ const AboutPage = () => {
             <div>
               <h3 className="text-xl font-semibold mb-6 text-gray-800">Follow Our Mission</h3>
               <div className="space-y-4">
-                <Link href="https://facebook.com/kurukshetra" className="flex items-center space-x-3 text-gray-700 hover:text-orange-600 transition-colors">
+                <Link href="https://www.facebook.com/share/15x8YKAjA5/" className="flex items-center space-x-3 text-gray-700 hover:text-orange-600 transition-colors">
                   <Facebook className="w-6 h-6" />
                   <span>Facebook - Daily Updates & Discussions</span>
                 </Link>
-                <Link href="https://twitter.com/kurukshetra" className="flex items-center space-x-3 text-gray-700 hover:text-orange-600 transition-colors">
+                <Link href="https://x.com/KURUKSHETRA108?t=-cOx8DWUZF3Oab9z5HNv2g&s=08" className="flex items-center space-x-3 text-gray-700 hover:text-orange-600 transition-colors">
                   <Twitter className="w-6 h-6" />
                   <span>Twitter - Breaking News & Analysis</span>
                 </Link>
-                <Link href="https://instagram.com/kurukshetra" className="flex items-center space-x-3 text-gray-700 hover:text-orange-600 transition-colors">
+                <Link href="https://www.instagram.com/kurukshetra108?igsh=MTIxNGtrbGJmaHhkbA==" className="flex items-center space-x-3 text-gray-700 hover:text-orange-600 transition-colors">
                   <Instagram className="w-6 h-6" />
                   <span>Instagram - Visual Stories & Culture</span>
                 </Link>
-                <Link href="https://youtube.com/kurukshetra" className="flex items-center space-x-3 text-gray-700 hover:text-orange-600 transition-colors">
+                <Link href="https://youtube.com/@kuruksetra?si=Zsc_6dA1w_6wnwbB" className="flex items-center space-x-3 text-gray-700 hover:text-orange-600 transition-colors">
                   <Youtube className="w-6 h-6" />
                   <span>YouTube - In-depth Documentaries</span>
                 </Link>
@@ -150,21 +119,7 @@ const AboutPage = () => {
                   <Mail className="w-6 h-6 text-orange-600" />
                   <div>
                     <p className="font-medium">Editorial Team</p>
-                    <p className="text-sm">editorial@kurukshetra.in</p>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-3 text-gray-700">
-                  <Mail className="w-6 h-6 text-orange-600" />
-                  <div>
-                    <p className="font-medium">Media Inquiries</p>
-                    <p className="text-sm">media@kurukshetra.in</p>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-3 text-gray-700">
-                  <Phone className="w-6 h-6 text-orange-600" />
-                  <div>
-                    <p className="font-medium">Contact Number</p>
-                    <p className="text-sm">+91-XXXX-XXXXXX</p>
+                    <p className="text-sm">kurukshetra5751@gmail.com</p>
                   </div>
                 </div>
               </div>

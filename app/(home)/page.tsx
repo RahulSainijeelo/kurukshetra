@@ -11,7 +11,7 @@ async function fetchLatestArticles() {
   try {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
     const response = await fetch(`${baseUrl}/api/articles?type=latest&limit=3`, {
-      next: { revalidate: 300 }
+      next: { revalidate: 10 }
     });
     
     if (!response.ok) throw new Error('Failed to fetch latest articles');
@@ -26,7 +26,7 @@ async function fetchTopPicks() {
   try {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
     const response = await fetch(`${baseUrl}/api/articles?type=top-picks&limit=3`, {
-      next: { revalidate: 300 }
+      next: { revalidate: 10 }
     });
     
     if (!response.ok) throw new Error('Failed to fetch top picks');
@@ -41,7 +41,7 @@ async function fetchEditorsChoice() {
   try {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
     const response = await fetch(`${baseUrl}/api/articles?type=editors-choice&limit=1`, {
-      next: { revalidate: 300 }
+      next: { revalidate: 10 }
     });
     
     if (!response.ok) throw new Error('Failed to fetch editor\'s choice');
@@ -56,7 +56,7 @@ async function fetchCategoryArticles(category: string, limit: number = 4) {
   try {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
     const response = await fetch(`${baseUrl}/api/articles/category/${category}?limit=${limit}&page=1`, {
-      next: { revalidate: 300 }
+      next: { revalidate: 30 }
     });
     
     if (!response.ok) throw new Error(`Failed to fetch ${category} articles`);
@@ -121,9 +121,15 @@ export default async function HomePage() {
             <NationSection articles={nationArticles.data} error={nationArticles.error} />
             <DharmaSection 
               category="dharm" 
-              title="DHARMA" 
+              title="DHARM" 
               articles={dharmaArticles.data} 
               error={dharmaArticles.error} 
+            />
+            <DharmaSection 
+              category="history" 
+              title="HISTORY" 
+              articles={historyArticles.data} 
+              error={historyArticles.error} 
             />
             <DharmaSection 
               category="politics" 
@@ -133,7 +139,7 @@ export default async function HomePage() {
             />
             <DharmaSection 
               category="globe" 
-              title="GLOBE" 
+              title="GLOBAL" 
               articles={globeArticles.data} 
               error={globeArticles.error} 
             />

@@ -15,37 +15,6 @@ export const metadata: Metadata = {
 };
 
 const NotFound = () => {
-  const quickLinks = [
-    {
-      title: 'Latest News',
-      description: 'Stay updated with our latest articles',
-      href: '/',
-      icon: FileText,
-      color: 'bg-blue-500'
-    },
-    {
-      title: 'Politics',
-      description: 'Political news and analysis',
-      href: '/politics',
-      icon: Search,
-      color: 'bg-red-500'
-    },
-    {
-      title: 'Dharm',
-      description: 'Spiritual and dharmic content',
-      href: '/dharm',
-      icon: Search,
-      color: 'bg-orange-500'
-    },
-    {
-      title: 'Nation',
-      description: 'National news and updates',
-      href: '/nation',
-      icon: Search,
-      color: 'bg-green-500'
-    }
-  ];
-
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <Header />
