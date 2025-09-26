@@ -27,7 +27,7 @@ export function Footer() {
       color: "hover:text-white hover:bg-red-600",
       bgColor: "bg-black-600"
     },
-     {
+    {
       Icon: Facebook,
       href: "https://www.facebook.com/share/15x8YKAjA5/",
       label: "Facebook",
@@ -79,8 +79,8 @@ export function Footer() {
               </h3>
               <p className="text-gray-300 leading-relaxed text-sm mb-6">
                 KURUKSHETRA is the intellectual battlefield for the soul of Bharat.
-                In an age where mainstream narratives systematically suppress indigenous truths,
-                we stand as a vanguard for civilizational reclamation.
+                In an age where mainstream narratives systematically suppress indigenous truths, we stand as a vanguard for civilizational reclamation. Our mission is to decolonize the Bharatiya mind, dismantle entrenched ideological hegemonies, and champion the Dharma-based narrative of our ancient civilization.
+                We are the voice of the resistance.
               </p>
               <div className="inline-block">
                 <div className="bg-gradient-to-r from-orange-500 to-red-600 text-white px-4 py-2 rounded-full text-xs font-bold tracking-wide">

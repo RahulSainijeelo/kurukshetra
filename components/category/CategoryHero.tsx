@@ -40,7 +40,7 @@ function getCategoryConfig(category: string) {
   const configs = {
     politics: {
       title: "Politics",
-      description: "News and views regarding the political landscape of India. From national political parties to regional news, we try and cut through the noise to explain how Indian politics is shaping up."
+      description: ""
     },
     opinions: {
       title: "Opinions",
