@@ -31,8 +31,8 @@ interface ArticleFormState {
 const newsCategories = [
   "Politics",
   "Dharm",
-  "Nation",
-  "Globe",
+  "Bharat",
+  "Global",
   "History",
 ];
 

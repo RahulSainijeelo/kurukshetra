@@ -130,13 +130,10 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
 function getCategoryDisplayName(category: string) {
   const categoryMap: { [key: string]: string } = {
     'politics': 'Politics',
-    'opinions': 'Opinions', 
-    'news-reports': 'News Reports',
-    'media': 'Media',
     'bollywood-sports': 'Bollywood & Sports',
     'dharm': 'Dharm',
-    'nation': 'Nation',
-    'globe': 'Globe',
+    'bharat': 'Bharat',
+    'global': 'Global',
     'history': 'History',
     'about': 'About'
   };
@@ -152,12 +149,9 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
   const categoryDescriptions: { [key: string]: string } = {
     'politics': 'Latest political news, analysis, and commentary on Indian and global politics.',
     'dharm': 'Explore dharmic content, spiritual insights, and traditional wisdom.',
-    'nation': 'National news and updates from across India.',
-    'globe': 'International news and global affairs coverage.',
+    'bharat': 'National news and updates from across India.',
+    'global': 'International news and global affairs coverage.',
     'history': 'Historical articles, analysis, and timeless stories.',
-    'opinions': 'Expert opinions and editorial content on current affairs.',
-    'news-reports': 'Breaking news and comprehensive reports.',
-    'media': 'Media coverage and journalism insights.',
     'bollywood-sports': 'Entertainment news and sports coverage.',
   };
   

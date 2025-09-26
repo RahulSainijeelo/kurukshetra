@@ -35,24 +35,23 @@ const AboutPage = () => {
             <div className="bg-gradient-to-r from-orange-600 via-red-600 to-orange-700 p-1">
               <div className="bg-white rounded-t-xl px-8 py-6">
                 <Quote className="w-10 h-10 text-orange-600 mx-auto mb-4" />
-                <h2 className="text-2xl font-bold text-gray-800 mb-2">Sacred Verses from the Gita</h2>
                 <div className="w-16 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 mx-auto"></div>
               </div>
             </div>
             
             <div className="p-8 md:p-12">
               <div className="text-center mb-8">
-                <div className="text-xl md:text-2xl leading-relaxed text-gray-800 font-medium space-y-3 mb-8">
-                  <p className="mb-2">"यदा यदा हि धर्मस्य ग्लानिर्भवति भारत ।</p>
-                  <p className="mb-2">अभ्युत्थानमधर्मस्य तदात्मानं सृजाम्यहम्‌ ॥</p>
-                  <p className="mb-2">परित्राणाय साधूनां विनाशाय च दुष्कृताम्‌ ।</p>
-                  <p>धर्मसंस्थापनार्थाय सम्भवामि युगे युगे ॥"</p>
+                <div className="text-2xl md:text-4xl leading-relaxed text-gray-800 font-medium space-y-3 mb-8">
+                  <p className="text-2xl md:text-4xl">"यदा यदा हि धर्मस्य ग्लानिर्भवति भारत ।</p>
+                  <p className="text-2xl md:text-4xl">अभ्युत्थानमधर्मस्य तदात्मानं सृजाम्यहम्‌ ॥</p>
+                  <p className="text-2xl md:text-4xl">परित्राणाय साधूनां विनाशाय च दुष्कृताम्‌ ।</p>
+                  <p className='text-2xl md:text-4xl'>धर्मसंस्थापनार्थाय सम्भवामि युगे युगे ॥"</p>
                 </div>
               </div>
               
               <div className="border-t-2 border-gradient-to-r from-orange-200 to-red-200 pt-8">
                 <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl p-6 border border-orange-200/50">
-                  <p className="text-gray-800 italic text-lg md:text-xl leading-relaxed">
+                  <p className="text-gray-800 italic text-xl md:text-2xl leading-relaxed">
                     "Whenever Dharma starts fading into oblivion and Adharma increases, I manifest myself (the formless assumes form – an avataar of the Supreme takes birth).
                     I take birth in every age to protect the virtuous, to annihilate the evil-doers and to establish (and re-establish) Dharma."
                   </p>
@@ -139,12 +138,12 @@ const AboutPage = () => {
             <div className="relative z-10 p-8 md:p-12">
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20">
                 <p className="text-white text-lg md:text-xl leading-relaxed font-light mb-6">
-                  The conch shell of Kurukshetra is sounded once more, not on a field of earthly combat, but on the intellectual and spiritual battlefield of our age. This platform is that sacred ground where the civilizational war for the soul of Bharat must be waged and won. We do not merely invite you to read; we call upon every true Bharatiya to take up their rightful place in this dharma-yuddha. In this struggle, you are both Arjuna, the warrior grappling with doubt and confronting a formidable adversary of distorted narratives, and BhagwanSri Krishna, the divine charioteer imparting the timeless wisdom of the Gita—the clarion call of truth and duty.
+                  The conch shell of Kurukshetra is sounded once more, not on a field of earthly combat, but on the intellectual and spiritual battlefield of our age. This platform is that sacred ground where the civilizational war for the soul of Bharat must be waged and won. We do not merely invite you to read; we call upon every true Bharatiya to take up their rightful place in this dharma-yuddha. In this struggle, you are both Arjuna, the warrior grappling with doubt and confronting a formidable adversary of distorted narratives, and Bhagwan Sri Krishna, the divine charioteer imparting the timeless wisdom of the Gita—the clarion call of truth and duty.
                 </p>
                 <div className="text-center">
                   <div className="bg-white/20 backdrop-blur-sm rounded-lg p-6 border border-white/30">
                     <p className="text-white font-bold text-xl md:text-2xl leading-relaxed">
-                      Let us,rise together. Shed the paralysis of confusion, arm yourselves with the weapon of discernment, and resolve to fight not for conquest, but for reclamation. Join us at Kurukshetra. Your civilization calls! Bharat Mata calls! Bharatiyata calls!
+                      Let us rise together. Shed the paralysis of confusion, arm yourselves with the weapon of discernment, and resolve to fight not for conquest, but for reclamation. Join us at Kurukshetra. Your civilization calls! Bharat Mata calls! Bharatiyata calls!
                     </p>
                   </div>
                 </div>

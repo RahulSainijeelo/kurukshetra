@@ -76,9 +76,9 @@ export default function TopPicksPage() {
   return (
     <main className="min-h-screen bg-white">
       <Header />
-      <div className="container mx-auto px-4 py-8">
-        <div className="bg-black text-white px-6 py-4 mb-8 rounded-lg">
-          <h1 className="text-3xl font-bold">Top Picks</h1>
+      <div className="container mx-auto !px-2 !py-4">
+        <div className="border-b border-gray-200 pb-5 mb-8">
+          <h1 className="text-3xl font-bold tracking-tight text-gray-900">Top Picks</h1>
           {pagination && (
             <p className="text-gray-300 mt-2">
               Showing {((currentPage - 1) * pagination.limit) + 1} - {Math.min(currentPage * pagination.limit, pagination.totalCount)} of {pagination.totalCount} articles
@@ -104,7 +104,7 @@ export default function TopPicksPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {articles.map((article) => (
                 <article key={article.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                  <Link href={`${article.id}`} className="group">
+                  <Link href={`/article/${article.id}`} className="group">
                     <div className="relative aspect-[16/10] overflow-hidden">
                       <Image
                         src={article.images[0]?.url || '/api/placeholder/400/250'}

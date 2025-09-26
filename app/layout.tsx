@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   keywords: [
     "Kurukshetra", "dharma", "truth", "authentic news", "Indian journalism",
     "dharmic values", "civilizational awakening", "Bharat", "Hindu dharma",
-    "politics", "nation", "culture", "history", "spiritual journalism",
+    "politics", "nation","bharat", "culture", "history", "spiritual journalism",
     "Rajiv Dixit", "truth movement", "anti-colonial", "indigenous knowledge",
     "Bharatiya values", "dharma yuddha", "righteous journalism"
   ],

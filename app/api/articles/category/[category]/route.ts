@@ -5,7 +5,7 @@ import moment from "moment";
 // Valid categories - this prevents static files from being processed
 const validCategories = [
     'politics', 'opinions', 'news-reports', 'media', 
-    'bollywood-sports', 'dharm', 'nation', 'globe', 'history', 'about'
+    'bollywood-sports', 'dharm', 'bharat', 'global', 'history', 'about'
 ];
 
 function calculateTimeAgo(publishDate: string): string {
@@ -50,13 +50,10 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ cate
         // Map URL-friendly category names to actual category names
         const categoryMap: { [key: string]: string } = {
             'politics': 'Politics',
-            'opinions': 'Opinions', 
-            'news-reports': 'News Reports',
-            'media': 'Media',
             'bollywood-sports': 'Bollywood & Sports',
             'dharm': 'Dharm',
-            'nation': 'Nation',
-            'globe': 'Globe',
+            'bharat': 'Bharat',
+            'global': 'Global',
             'history': 'History',
             'about': 'About'
         };

@@ -69,7 +69,7 @@ export function DharmaSection({ category, title, tag, emoji, articles, error }: 
         textHover: 'group-hover:text-red-600',
         categoryBg: 'bg-red-600'
       },
-      globe: { 
+      global: { 
         underlineColor: 'bg-blue-600',
         tagBg: 'bg-blue-600 bg-opacity-10',
         tagText: 'text-blue-600',
@@ -155,7 +155,7 @@ export function DharmaSection({ category, title, tag, emoji, articles, error }: 
                   {category === 'dharm' ? 'धर्म' : 
                    category === 'history' ? 'HIST' :
                    category === 'politics' ? 'POL' :
-                   category === 'globe' ? 'GLB' : 
+                   category === 'global' ? 'GLB' : 
                    title.slice(0, 3)}
                 </div>
               </div>

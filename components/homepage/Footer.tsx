@@ -40,8 +40,8 @@ export function Footer() {
     { text: "Home", href: "/" },
     { text: "Politics", href: "/category/politics" },
     { text: "Dharm", href: "/category/dharm" },
-    { text: "Bharat", href: "/category/nation" },
-    { text: "Global", href: "/category/globe" },
+    { text: "Bharat", href: "/category/bharat" },
+    { text: "Global", href: "/category/global" },
     { text: "History", href: "/category/history" }
   ];
 

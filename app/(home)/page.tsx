@@ -94,11 +94,11 @@ export default async function HomePage() {
     fetchLatestArticles(),
     fetchTopPicks(),
     fetchEditorsChoice(),
-    fetchCategoryArticles('nation', 2),
+    fetchCategoryArticles('bharat', 2),
     fetchCategoryArticles('dharm', 4),
     fetchCategoryArticles('history', 4),
     fetchCategoryArticles('politics', 4),
-    fetchCategoryArticles('globe', 4)
+    fetchCategoryArticles('global', 4)
   ]);
 
   return (
@@ -138,7 +138,7 @@ export default async function HomePage() {
               error={politicsArticles.error} 
             />
             <DharmaSection 
-              category="globe" 
+              category="global" 
               title="GLOBAL" 
               articles={globeArticles.data} 
               error={globeArticles.error} 

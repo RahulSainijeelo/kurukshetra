@@ -6,8 +6,8 @@ import moment from "moment"
 const categories = [
   "Politics",
   "Dharm",
-  "Nation",
-  "Globe",
+  "Bharat",
+  "Global",
   "History",
 ] as const;
 

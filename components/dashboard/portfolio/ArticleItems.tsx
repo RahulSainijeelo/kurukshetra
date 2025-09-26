@@ -39,13 +39,10 @@ const getStatusColor = (status: string) => {
 const getCategoryColor = (category: string) => {
   const colors = {
     'Politics': 'bg-blue-100 text-blue-800',
-    'Opinions': 'bg-purple-100 text-purple-800',
-    'News Reports': 'bg-green-100 text-green-800',
-    'Media': 'bg-red-100 text-red-800',
     'Bollywood & Sports': 'bg-pink-100 text-pink-800',
     'Dharm': 'bg-orange-100 text-orange-800',
-    'Nation': 'bg-indigo-100 text-indigo-800',
-    'Globe': 'bg-teal-100 text-teal-800',
+    'Bharat': 'bg-indigo-100 text-indigo-800',
+    'Global': 'bg-teal-100 text-teal-800',
     'History': 'bg-amber-100 text-amber-800',
     'About': 'bg-gray-100 text-gray-800',
   };

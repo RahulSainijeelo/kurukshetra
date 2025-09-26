@@ -32,8 +32,8 @@ type ArticleFormData = z.infer<typeof articleSchema>;
 const newsCategories = [
   "Politics",
   "Dharm",
-  "Nation",
-  "Globe",
+  "Bharat",
+  "Global",
   "History",
 ];
 
