@@ -25,11 +25,11 @@ export function Footer() {
       href: "https://x.com/KURUKSHETRA108?t=-cOx8DWUZF3Oab9z5HNv2g&s=08",
       label: "Twitter",
       color: "hover:text-white hover:bg-red-600",
-      bgColor: "bg-red-600"
+      bgColor: "bg-black-600"
     },
      {
       Icon: Facebook,
-      href: "https://youtube.com/@kuruksetra?si=GP3gQCFzJv0f4k3g",
+      href: "https://www.facebook.com/share/15x8YKAjA5/",
       label: "Facebook",
       color: "hover:text-white hover:bg-red-600",
       bgColor: "bg-blue-600"
@@ -42,13 +42,13 @@ export function Footer() {
     { text: "Dharm", href: "/category/dharm" },
     { text: "Bharat", href: "/category/bharat" },
     { text: "Global", href: "/category/global" },
-    { text: "History", href: "/category/history" }
+    { text: "History", href: "/category/history" },
+    { text: "About Us", href: "/about" },
   ];
 
   const legalLinks = [
     { text: "Terms of Service", href: "#" },
     { text: "Privacy Policy", href: "#" },
-    { text: "About Us", href: "/about" },
     { text: "Contact Us", href: "#" }
   ];
 
@@ -155,13 +155,12 @@ export function Footer() {
               </h3>
               <nav className="space-y-2">
                 {legalLinks.map((link) => (
-                  <Link
+                  <p
                     key={link.text}
-                    href={link.href}
                     className="block text-gray-400 hover:text-gray-200 transition-colors text-sm"
                   >
                     {link.text}
-                  </Link>
+                  </p>
                 ))}
               </nav>
             </div>

@@ -176,10 +176,10 @@ export default function RootLayout({
       "name": "Kurukshetra Editorial Team"
     },
     "sameAs": [
-      "https://twitter.com/kurukshetra",
-      "https://facebook.com/kurukshetra",
-      "https://instagram.com/kurukshetra",
-      "https://youtube.com/kurukshetra"
+      "https://x.com/KURUKSHETRA108?t=-cOx8DWUZF3Oab9z5HNv2g&s=08",
+      "https://www.facebook.com/share/15x8YKAjA5/",
+      "https://www.instagram.com/kurukshetra108?igsh=MTIxNGtrbGJmaHhkbA==",
+      "https://youtube.com/@kuruksetra?si=Zsc_6dA1w_6wnwbB"
     ],
     "address": {
       "@type": "PostalAddress",
