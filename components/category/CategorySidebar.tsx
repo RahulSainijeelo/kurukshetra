@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
+import { format } from "date-fns";
 
 interface Article {
   id: string;
@@ -92,7 +93,7 @@ export async function CategorySidebar() {
                   <h4 className="text-sm font-semibold text-gray-900 line-clamp-3 group-hover:text-orange-600 transition-colors mb-1">
                     {news.title}
                   </h4>
-                  <p className="text-xs text-gray-500">{news.publishDate}</p>
+                  <p className="text-xs text-gray-500">{format(new Date(news.publishDate), 'MMM dd, yyyy')}</p>
                 </div>
               </div>
             </Link>

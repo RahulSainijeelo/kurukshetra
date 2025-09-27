@@ -28,9 +28,9 @@ export function CategoryHero({ category }: CategoryHeroProps) {
         <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-0 p-0">
           {categoryConfig.title}
         </h1>
-        <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+        {/* <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
           {categoryConfig.description}
-        </p>
+        </p> */}
       </div>
     </section>
   );
@@ -42,22 +42,14 @@ function getCategoryConfig(category: string) {
       title: "Politics",
       description: ""
     },
-    opinions: {
-      title: "Opinions",
-      description: "Expert opinions and editorial pieces on current affairs, policy decisions, and social issues affecting India and the world."
-    },
-    "news-reports": {
-      title: "News Reports", 
-      description: "In-depth reporting and breaking news stories from across India and around the world."
-    },
     media: {
       title: "Media",
-      description: "Analysis of media coverage, press freedom issues, and commentary on journalism in the digital age."
+      description: ""
     }
   };
   
   return configs[category as keyof typeof configs] || {
     title: category.charAt(0).toUpperCase() + category.slice(1),
-    description: "Latest news and updates from this category."
+    description: ""
   };
 }

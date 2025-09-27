@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hello.com'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://localhost:3000.com'
   
   // Static pages - these always work
   const staticPages: MetadataRoute.Sitemap = [
