@@ -68,7 +68,7 @@ export function HeroSection({ articles, loading = false }: HeroSectionProps) {
     <section className="bg-white py-6 md:py-8">
       <div className="space-y-6">
         {displayArticles && displayArticles.map((article:any, idx:any) => (
-          <Link key={`${article.id}-${idx}`} href={`/news/${article.id}`} className="group block">
+          <Link key={`${article.id}-${idx}`} href={`/article/${article.id}`} className="group block">
             <div className="flex space-x-4 p-3 rounded-lg hover:bg-gray-50 transition-colors">
               <div className="relative w-32 h-20 flex-shrink-0 overflow-hidden rounded-md shadow-sm border border-gray-200">
                 <Image
