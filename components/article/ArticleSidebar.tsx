@@ -129,7 +129,7 @@ export function ArticleSidebar({ currentArticleId, category }: ArticleSidebarPro
             ))}
           </div>
           <Link 
-            href={`/${category.toLowerCase()}`}
+            href={`/category/${category.toLowerCase()}`}
             className="inline-block mt-4 text-orange-600 hover:text-orange-700 text-sm font-medium"
           >
             View more in {category} →
