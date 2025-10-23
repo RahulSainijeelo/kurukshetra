@@ -1,4 +1,3 @@
-import "./globals.css";
 import type { Metadata, Viewport } from "next";
 import { Inter, Noto_Sans_Devanagari } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -8,6 +7,7 @@ import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { JsonLd } from "@/components/seo/JsonLd";
 import { GoogleAnalytics } from "@/components/seo/GoogleAnalytics";
+import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -242,6 +242,8 @@ export default function RootLayout({
         {/* <script async src="https://platform.twitter.com/widgets.js" charSet="u"/> */}
 
         <link rel="preconnect" href="https://www.youtube.com" />
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5404939334049607"
+     crossOrigin="anonymous"></script>
       </head>
       <body className={`${inter.className} antialiased`}>
         <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-orange-600 text-white px-4 py-2 rounded-md z-50">
