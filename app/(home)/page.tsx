@@ -68,12 +68,12 @@ async function fetchCategoryArticles(category: string, limit: number = 4) {
 }
 
 export const metadata: Metadata = {
-  title: 'Kurukshetra - Truth in Journalism | Authentic News & Analysis',
-  description: 'Discover authentic journalism at Kurukshetra. Get latest news, political analysis, dharmic content, and truth-driven reporting from India and around the world.',
+  title: "Kurukshetra.info The Intellectual Battlefield for Bharat's Civilizational Future",
+  description: "Kurukshetra.info is the digital command post in the silent war for Bharat's soul. We provide unflinching analysis on Global, Bharat, Dharma, Politics, and History to arm the modern Intellectual Kshatriya.",
   keywords: 'kurukshetra, news, journalism, politics, dharma, india, authentic news, analysis',
   openGraph: {
-    title: 'Kurukshetra - Truth in Journalism',
-    description: 'Discover authentic journalism and truth-driven reporting',
+    title: "Kurukshetra.info The Intellectual Battlefield for Bharat's Civilizational Future",
+    description: "Kurukshetra.info is the digital command post in the silent war for Bharat's soul. We provide unflinching analysis on Global, Bharat, Dharma, Politics, and History to arm the modern Intellectual Kshatriya.",
     type: 'website',
     url: process.env.NEXT_PUBLIC_SITE_URL,
   },

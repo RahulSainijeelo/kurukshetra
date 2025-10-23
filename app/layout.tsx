@@ -39,10 +39,10 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://kurukshetra.info'),
 
   title: {
-    default: "Kurukshetra - Take You to the Reality | Facts Speak, Lies Lie on the Ground",
-    template: "%s | Kurukshetra"
+    default: "Kurukshetra.info The Intellectual Battlefield for Bharat's Civilizational Future",
+    template: "%s | Kurukshetra.info"
   },
-  description: "Kurukshetra brings you authentic news, dharmic values, and truth-based journalism. Founded on principles of righteousness, we expose lies and present facts. Join the civilizational awakening.",
+  description: "Kurukshetra.info is the digital command post in the silent war for Bharat's soul. We provide unflinching analysis on Global, Bharat, Dharma, Politics, and History to arm the modern Intellectual Kshatriya.",
 
   keywords: [
     "Kurukshetra", "dharma", "truth", "authentic news", "Indian journalism",
@@ -56,8 +56,8 @@ export const metadata: Metadata = {
     { name: "Kurukshetra Editorial Team" },
     { name: "Editorial Board" }
   ],
-  creator: "Kurukshetra Media",
-  publisher: "Kurukshetra Digital Media",
+  creator: "Kurukshetra.info Media",
+  publisher: "Kurukshetra.info Digital Media",
 
   alternates: {
     canonical: '/',
@@ -73,9 +73,9 @@ export const metadata: Metadata = {
     locale: 'en_IN',
     alternateLocale: ['hi_IN'],
     url: '/',
-    title: 'Kurukshetra - Take You to the Reality',
-    description: 'Dharmic journalism bringing truth and authentic narratives to light. Facts speak, lies lie on the ground.',
-    siteName: 'Kurukshetra',
+    title: "Kurukshetra.info The Intellectual Battlefield for Bharat's Civilizational Future",
+    description: "Kurukshetra.info is the digital command post in the silent war for Bharat's soul. We provide unflinching analysis on Global, Bharat, Dharma, Politics, and History to arm the modern Intellectual Kshatriya.",
+    siteName: 'Kurukshetra.info',
     images: [
       {
         url: '/og-image.jpg',
@@ -99,17 +99,17 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: '@kurukshetra',
     creator: '@kurukshetra',
-    title: 'Kurukshetra - Take You to the Reality',
-    description: 'Dharmic journalism bringing truth and authentic narratives to light.',
+    title: "Kurukshetra.info The Intellectual Battlefield for Bharat's Civilizational Future",
+    description: "Kurukshetra.info is the digital command post in the silent war for Bharat's soul. We provide unflinching analysis on Global, Bharat, Dharma, Politics, and History to arm the modern Intellectual Kshatriya.",
     images: ['/twitter-image.jpg'],
   },
 
   // App-specific
-  applicationName: 'Kurukshetra',
+  applicationName: 'Kurukshetra.info',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: 'Kurukshetra',
+    title: 'Kurukshetra.info',
   },
 
   // Verification
@@ -160,7 +160,7 @@ export default function RootLayout({
   const organizationJsonLd = {
     "@context": "https://schema.org",
     "@type": "NewsMediaOrganization",
-    "name": "Kurukshetra",
+    "name": "Kurukshetra.info",
     "alternateName": "Kurukshetra Digital Media",
     "url": process.env.NEXT_PUBLIC_SITE_URL || "https://kurukshetra.com",
     "logo": {
@@ -169,8 +169,8 @@ export default function RootLayout({
       "width": 512,
       "height": 512
     },
-    "description": "Dharmic journalism bringing truth and authentic narratives to light",
-    "foundingDate": "2024",
+    "description": "Kurukshetra.info is the digital command post in the silent war for Bharat's soul. We provide unflinching analysis on Global, Bharat, Dharma, Politics, and History to arm the modern Intellectual Kshatriya.",
+    "foundingDate": "2025",
     "founder": {
       "@type": "Person",
       "name": "Kurukshetra Editorial Team"
@@ -200,9 +200,9 @@ export default function RootLayout({
   const websiteJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "Kurukshetra",
+    "name": "Kurukshetra.info",
     "url": process.env.NEXT_PUBLIC_SITE_URL || "https://kurukshetra.com",
-    "description": "Take you to the reality. Facts speak, lies lie on the ground",
+    "description": "Kurukshetra.info is the digital command post in the silent war for Bharat's soul. We provide unflinching analysis on Global, Bharat, Dharma, Politics, and History to arm the modern Intellectual Kshatriya.",
     "inLanguage": ["en-IN", "hi-IN"],
     "potentialAction": {
       "@type": "SearchAction",
@@ -214,7 +214,7 @@ export default function RootLayout({
     },
     "publisher": {
       "@type": "NewsMediaOrganization",
-      "name": "Kurukshetra",
+      "name": "Kurukshetra.info",
       "logo": {
         "@type": "ImageObject",
         "url": `${process.env.NEXT_PUBLIC_SITE_URL}/logo.png`

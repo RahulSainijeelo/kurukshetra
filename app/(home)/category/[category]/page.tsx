@@ -147,11 +147,11 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
   const displayName = getCategoryDisplayName(categoryName);
   
   const categoryDescriptions: { [key: string]: string } = {
-    'politics': 'Latest political news, analysis, and commentary on Indian and global politics.',
-    'dharm': 'Explore dharmic content, spiritual insights, and traditional wisdom.',
-    'bharat': 'National news and updates from across India.',
-    'global': 'International news and global affairs coverage.',
-    'history': 'Historical articles, analysis, and timeless stories.',
+    'politics': 'Policy battles for civilizational sovereignty. Analyzing political warfare against Bharat.',
+    'dharm': "Defending Sanatan Dharm. Exposing conversion mafias and philosophical assaults.",
+    'bharat':"Ground zero of the civilizational war. Covering Bharat's current battles - from cultural attacks to Dharmic resurgence.",
+    'global': "Geopolitical forces shaping Bharat's destiny. Tracking international policies and power games that impact Sanatan Dharm.",
+    'history':"Reclaiming Bharat's stolen heritage. Decolonizing our civilizational narrative.",
     'bollywood-sports': 'Entertainment news and sports coverage.',
   };
   

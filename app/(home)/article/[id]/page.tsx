@@ -97,7 +97,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
       title: article.title,
       description: article.description || article.shortDescription,
       url: `/news/${id}`,
-      siteName: 'Kurukshetra',
+      siteName: 'Kurukshetra.info',
       locale: 'en_IN',
       type: 'article',
       publishedTime,

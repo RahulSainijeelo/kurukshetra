@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export const metadata: Metadata = {
-  title: "About Kurukshetra - Take You to the Reality",
+  title: "About - Kurukshetra.info The Intellectual Battlefield for Bharat's Civilizational Future",
   description:
     "Learn about Kurukshetra's mission to restore truth and dharma in modern discourse. Facts speak, lies lie on the ground. Join our civilizational movement.",
 };
