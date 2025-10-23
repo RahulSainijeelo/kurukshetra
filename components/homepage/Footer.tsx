@@ -47,9 +47,7 @@ export function Footer() {
   ];
 
   const legalLinks = [
-    { text: "Terms of Service", href: "#" },
-    { text: "Privacy Policy", href: "#" },
-    { text: "Contact Us", href: "#" }
+    { text: "Privacy Policy", href: "/privacy-policy" },
   ];
 
   return (
