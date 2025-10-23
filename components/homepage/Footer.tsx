@@ -153,12 +153,14 @@ export function Footer() {
               </h3>
               <nav className="space-y-2">
                 {legalLinks.map((link) => (
-                  <p
+                  <Link
+                    href={link.href}
+                    target="_blank"
                     key={link.text}
                     className="block text-gray-400 hover:text-gray-200 transition-colors text-sm"
                   >
                     {link.text}
-                  </p>
+                  </Link>
                 ))}
               </nav>
             </div>
