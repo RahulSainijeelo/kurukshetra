@@ -156,18 +156,18 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
   };
   
   return {
-    title: `${displayName} - Latest News & Articles | Kurukshetra`,
+    title: `${displayName} - ${categoryDescriptions[categoryName] }| Kurukshetra`,
     description: categoryDescriptions[categoryName] || `Read the latest ${displayName.toLowerCase()} news and articles. Stay updated with comprehensive coverage and analysis.`,
     keywords: `${displayName.toLowerCase()}, news, articles, kurukshetra, journalism, india`,
     openGraph: {
-      title: `${displayName} - Latest News & Articles`,
+      title: `${displayName} - ${categoryDescriptions[categoryName] }`,
       description: categoryDescriptions[categoryName] || `Latest ${displayName.toLowerCase()} news and articles`,
       type: 'website',
       url: `${process.env.NEXT_PUBLIC_SITE_URL}/${categoryName}`,
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${displayName} - Latest News & Articles`,
+      title: `${displayName} - ${categoryDescriptions[categoryName] }`,
       description: categoryDescriptions[categoryName] || `Latest ${displayName.toLowerCase()} news and articles`,
     },
   };

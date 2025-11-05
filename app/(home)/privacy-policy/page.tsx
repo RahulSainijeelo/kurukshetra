@@ -19,23 +19,23 @@ const PrivacyPolicyPage = () => {
           <div className="bg-gradient-to-r from-orange-600 to-red-600 rounded-t-2xl">
             <div className="px-8 py-6">
               <h1 className="text-3xl font-bold text-white">Privacy Policy</h1>
-              <p className="text-orange-100 mt-2">Last Updated: October 23, 2025</p>
+              <p className="text-orange-100 mt-2">Last Updated: November 5, 2025</p>
             </div>
           </div>
           
           {/* Content */}
           <div className="p-8 md:p-12 space-y-8">
-            {/* Introduction */}
+            {/* Preamble */}
             <section>
               <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
                 <div className="w-2 h-6 bg-orange-500 rounded-full mr-3"></div>
-                Introduction
+                Preamble: Our Dharma of Data Stewardship
               </h2>
               <p className="text-gray-700 leading-relaxed">
-                Kurukshetra ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website kuruksetra.com and any related subdomains (collectively, the "Site").
+                KURUKSHETRA ("we," "our," "the Editorial Team") operates the digital publication at kurukshetra.info (the "Site"). Our mission is the articulation and advancement of Bharatiya civilisational thought. This mission extends to how we handle the information of our readers and contributors. We believe privacy is a fundamental principle (<em>mūla siddhānta</em>) of trust.
               </p>
               <p className="text-gray-700 leading-relaxed mt-3">
-                We respect your privacy and are committed to protecting personally identifiable information you may provide us through the Site. Please read this Privacy Policy carefully to understand our practices regarding your information and how we will treat it. By using our Site, you acknowledge that you have read and understood this Privacy Policy.
+                This document outlines our practices concerning the minimal data we collect. It is written not merely to comply with statutes, but to articulate a covenant of intellectual integrity with you, our esteemed reader. By engaging with our Site, you align yourself with this covenant.
               </p>
             </section>
             
@@ -43,30 +43,27 @@ const PrivacyPolicyPage = () => {
             <section>
               <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
                 <div className="w-2 h-6 bg-orange-500 rounded-full mr-3"></div>
-                Information We Collect
+                The Information We Curate: A Minimalist Approach
               </h2>
-              
-              <h3 className="text-xl font-semibold text-gray-800 mt-6 mb-3">Personal Information</h3>
-              <p className="text-gray-700 leading-relaxed">
-                We may collect personal information that you voluntarily provide when interacting with our Site, including but not limited to:
+              <p className="text-gray-700 leading-relaxed mb-4">
+                In line with our focus as a literary and ideational platform, our data collection is intentionally sparse. We do not have user logins, comment sections, or social media integrations that necessitate extensive personal data harvesting.
               </p>
-              <ul className="list-disc pl-6 mt-2 space-y-1 text-gray-700">
-                <li>Contact information (such as name, email address)</li>
-                <li>Account credentials if you create an account</li>
-                <li>Comments, feedback, and other content you provide</li>
-                <li>Information provided when subscribing to newsletters</li>
-                <li>Communication records when you contact us</li>
+              
+              <h3 className="text-xl font-semibold text-gray-800 mt-6 mb-3">A. Information You Voluntarily Provide:</h3>
+              <p className="text-gray-700 leading-relaxed mb-3">
+                This is the primary, and almost exclusive, form of data we hold.
+              </p>
+              <ul className="list-disc pl-6 mt-2 space-y-2 text-gray-700">
+                <li><strong>Email Address:</strong> Solely for the purpose of subscribing to our newsletter, should you explicitly choose to do so. This is an opt-in, conscious action.</li>
+                <li><strong>Correspondence:</strong> If you contact us via our official email (kurukshetra5751@gmail.com), we retain the communication to serve your query and maintain a scholarly record.</li>
               </ul>
               
-              <h3 className="text-xl font-semibold text-gray-800 mt-6 mb-3">Automatically Collected Information</h3>
-              <p className="text-gray-700 leading-relaxed">
-                When you visit our Site, we may automatically collect certain information about your device and usage patterns, including:
+              <h3 className="text-xl font-semibold text-gray-800 mt-6 mb-3">B. Information Collected Automatically:</h3>
+              <p className="text-gray-700 leading-relaxed mb-3">
+                This is non-personal, anonymized data essential for the <em>yajna</em> of delivering our content to you.
               </p>
-              <ul className="list-disc pl-6 mt-2 space-y-1 text-gray-700">
-                <li>Log and usage data (IP address, browser type, pages visited)</li>
-                <li>Device information (hardware model, operating system)</li>
-                <li>Location information (country, city)</li>
-                <li>Cookies and similar tracking technologies</li>
+              <ul className="list-disc pl-6 mt-2 space-y-2 text-gray-700">
+                <li><strong>Essential Analytics:</strong> We employ a self-respecting, privacy-focused analytics tool (such as Plausible or a similarly minimal setup) that helps us understand aggregate traffic patterns (e.g., number of visitors, popular articles, referring sites). This process deliberately avoids collecting or storing any personally identifiable information. We do not use cookies for tracking, profiling, or advertising. We see no dharma in surveilling our readers.</li>
               </ul>
             </section>
             
@@ -74,88 +71,52 @@ const PrivacyPolicyPage = () => {
             <section>
               <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
                 <div className="w-2 h-6 bg-orange-500 rounded-full mr-3"></div>
-                How We Use Your Information
+                The Purpose of Knowledge: How We Use This Information
               </h2>
-              <p className="text-gray-700 leading-relaxed">
-                We may use the information we collect for various purposes, including:
+              <p className="text-gray-700 leading-relaxed mb-4">
+                The scant information we gather serves a singular, focused purpose: to deepen and disseminate the intellectual discourse of Bharat.
               </p>
-              <ul className="list-disc pl-6 mt-2 space-y-1 text-gray-700">
-                <li>Providing, maintaining, and improving our Site</li>
-                <li>Personalizing your experience on our Site</li>
-                <li>Communicating with you, including responding to inquiries</li>
-                <li>Sending newsletters and promotional materials (with your consent)</li>
-                <li>Monitoring and analyzing usage patterns and trends</li>
-                <li>Detecting, preventing, and addressing technical issues</li>
-                <li>Complying with legal obligations</li>
+              <ul className="list-disc pl-6 mt-2 space-y-2 text-gray-700">
+                <li><strong>The Newsletter:</strong> To deliver our carefully curated essays, analyses, and literary pieces directly to your inbox. Each email will contain a clear, one-click method to revoke this permission.</li>
+                <li><strong>Site Integrity:</strong> To ensure the technical functionality and security of kurukshetra.info, protecting it from digital adharma such as malicious attacks.</li>
+                <li><strong>Scholarly Refinement:</strong> To understand, in aggregate, which themes and essays resonate most, allowing us to refine our editorial direction and better serve the intellectual <em>samsad</em> (assembly).</li>
               </ul>
             </section>
             
-            {/* Information Sharing */}
+            {/* Non-Negotiable */}
             <section>
               <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
                 <div className="w-2 h-6 bg-orange-500 rounded-full mr-3"></div>
-                Sharing Your Information
+                The Non-Negotiable: How We Do NOT Use Your Information
               </h2>
-              <p className="text-gray-700 leading-relaxed">
-                We may share your information with:
+              <p className="text-gray-700 leading-relaxed mb-4">
+                Our stance is absolute and unambiguous:
               </p>
-              <ul className="list-disc pl-6 mt-2 space-y-1 text-gray-700">
-                <li>Service providers who perform services on our behalf</li>
-                <li>Analytics providers who help us understand Site usage</li>
-                <li>Legal authorities when required by law</li>
-                <li>Affiliated organizations who support our mission</li>
+              <ul className="list-disc pl-6 mt-2 space-y-2 text-gray-700">
+                <li><strong>No Sale or Barter:</strong> We do not, and shall never, sell, rent, or trade your email address or any other data.</li>
+                <li><strong>No Third-Party Profiling:</strong> We do not permit third-party advertising networks to track our readers or place targeting cookies.</li>
+                <li><strong>No Psychological Manipulation:</strong> Our content is designed to provoke thought, not to algorithmically exploit attention.</li>
+                <li><strong>No Unnecessary Retention:</strong> We do not hold your data indefinitely. Correspondence is archived for a reasonable scholarly period, and you may request its deletion at any time.</li>
               </ul>
-              
-              <p className="text-gray-700 leading-relaxed mt-4">
-                We do not sell or rent your personal information to third parties for their marketing purposes without your explicit consent.
-              </p>
-            </section>
-            
-            {/* Cookies */}
-            <section>
-              <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
-                <div className="w-2 h-6 bg-orange-500 rounded-full mr-3"></div>
-                Cookies and Tracking Technologies
-              </h2>
-              <p className="text-gray-700 leading-relaxed">
-                We use cookies and similar tracking technologies to track activity on our Site and hold certain information. Cookies are files with a small amount of data that may include an anonymous unique identifier. These are sent to your browser from a website and stored on your device.
-              </p>
-              <p className="text-gray-700 leading-relaxed mt-3">
-                We use the following types of cookies:
-              </p>
-              <ul className="list-disc pl-6 mt-2 space-y-1 text-gray-700">
-                <li><strong>Essential cookies:</strong> Necessary for the Site to function properly</li>
-                <li><strong>Analytical/performance cookies:</strong> Allow us to recognize and count visitors and see how they move around our Site</li>
-                <li><strong>Functionality cookies:</strong> Enable us to personalize content for you</li>
-                <li><strong>Targeting cookies:</strong> Record your visit to our Site, pages visited, and links followed</li>
-              </ul>
-              
-              <p className="text-gray-700 leading-relaxed mt-4">
-                You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our Site.
-              </p>
             </section>
             
             {/* User Rights */}
             <section>
               <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
                 <div className="w-2 h-6 bg-orange-500 rounded-full mr-3"></div>
-                Your Data Rights
+                Your Intellectual Sovereignty: Rights and Choices
               </h2>
-              <p className="text-gray-700 leading-relaxed">
-                Depending on your location, you may have certain rights regarding your personal information, including:
+              <p className="text-gray-700 leading-relaxed mb-4">
+                As a sovereign individual in our intellectual community, you possess absolute rights over your data.
               </p>
-              <ul className="list-disc pl-6 mt-2 space-y-1 text-gray-700">
-                <li>Access to your personal data</li>
-                <li>Correction of inaccurate information</li>
-                <li>Deletion of your personal data</li>
-                <li>Restriction of processing of your data</li>
-                <li>Data portability</li>
-                <li>Objection to processing</li>
-                <li>Withdrawal of consent</li>
+              <ul className="list-disc pl-6 mt-2 space-y-2 text-gray-700">
+                <li><strong>Access & Portability:</strong> You may request a copy of the minimal personal data we hold about you.</li>
+                <li><strong>Correction & Deletion:</strong> You may request that we correct inaccuracies or completely erase your data from our records.</li>
+                <li><strong>Dissociation:</strong> You may unsubscribe from our newsletter at any moment, with immediate effect, using the link provided in every email.</li>
               </ul>
               
               <p className="text-gray-700 leading-relaxed mt-4">
-                To exercise these rights, please contact us using the information provided in the "Contact Us" section below.
+                To exercise any of these rights, simply contact us at kurukshetra5751@gmail.com. Your request will be honored with the urgency and respect it deserves.
               </p>
             </section>
             
@@ -163,21 +124,10 @@ const PrivacyPolicyPage = () => {
             <section>
               <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
                 <div className="w-2 h-6 bg-orange-500 rounded-full mr-3"></div>
-                Data Security
+                The Fortress of Dharma: Our Commitment to Security
               </h2>
               <p className="text-gray-700 leading-relaxed">
-                We implement appropriate technical and organizational measures to protect your personal information against unauthorized or unlawful processing, accidental loss, destruction, or damage. However, please note that no method of transmission over the Internet or electronic storage is 100% secure, and we cannot guarantee absolute security.
-              </p>
-            </section>
-            
-            {/* Children's Privacy */}
-            <section>
-              <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
-                <div className="w-2 h-6 bg-orange-500 rounded-full mr-3"></div>
-                Children's Privacy
-              </h2>
-              <p className="text-gray-700 leading-relaxed">
-                Our Site is not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child has provided us with personal information, please contact us so that we can take necessary actions.
+                We implement appropriate technical and strategic measures to protect the information under our stewardship. However, in the spirit of <em>satya</em> (truth), we acknowledge that no digital transmission is invulnerable. We pledge to maintain the highest standards of vigilance practicable.
               </p>
             </section>
             
@@ -185,10 +135,10 @@ const PrivacyPolicyPage = () => {
             <section>
               <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
                 <div className="w-2 h-6 bg-orange-500 rounded-full mr-3"></div>
-                Changes to This Privacy Policy
+                The Living Document: Amendments to This Policy
               </h2>
               <p className="text-gray-700 leading-relaxed">
-                We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date at the top of this policy. You are advised to review this Privacy Policy periodically for any changes.
+                The world of ideas evolves, and so may this policy. Any future changes will be posted on this page with an updated "Last Updated" date. The core principles of minimalism, transparency, and intellectual stewardship are immutable.
               </p>
             </section>
             
@@ -196,21 +146,21 @@ const PrivacyPolicyPage = () => {
             <section>
               <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
                 <div className="w-2 h-6 bg-orange-500 rounded-full mr-3"></div>
-                Contact Us
+                Joining the Samsad: Contacting KURUKSHETRA
               </h2>
-              <p className="text-gray-700 leading-relaxed">
-                If you have any questions about this Privacy Policy, please contact us at:
+              <p className="text-gray-700 leading-relaxed mb-4">
+                For any questions regarding this Privacy Policy or our intellectual stewardship of your data, we welcome your dialogue.
               </p>
               <div className="mt-4 bg-orange-50 rounded-lg p-6 border border-orange-200">
-                <p className="text-gray-800 font-medium">Kurukshetra Editorial Team</p>
+                <p className="text-gray-800 font-medium">The KURUKSHETRA Editorial Team</p>
                 <p className="text-gray-700 mt-1">Email: <a href="mailto:kurukshetra5751@gmail.com" className="text-orange-600 hover:underline">kurukshetra5751@gmail.com</a></p>
               </div>
             </section>
             
             {/* Footer */}
             <section className="pt-6 border-t border-gray-200">
-              <p className="text-gray-500 text-sm">
-                By using our Site, you acknowledge that you have read this Privacy Policy and consent to its terms.
+              <p className="text-gray-700 leading-relaxed italic">
+                By engaging with KURUKSHETRA, you acknowledge that you have read, understood, and consent to the principles enshrined in this policy. Welcome to the discourse.
               </p>
             </section>
           </div>
