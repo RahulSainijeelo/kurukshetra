@@ -17,7 +17,6 @@ async function getArticle(id: string) {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/articles/${id}`,
       { 
-        cache: 'no-store',
         next: { revalidate: 300 }
       }
     );

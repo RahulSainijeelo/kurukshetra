@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface CategoryPaginationProps {
@@ -22,11 +21,10 @@ export function CategoryPagination({
 
   const generatePageNumbers = () => {
     const pages = [];
-    const showPages = 5; // Number of page buttons to show
+    const showPages = 5;
     let startPage = Math.max(1, currentPage - Math.floor(showPages / 2));
     let endPage = Math.min(totalPages, startPage + showPages - 1);
 
-    // Adjust start page if we're near the end
     if (endPage - startPage < showPages - 1) {
       startPage = Math.max(1, endPage - showPages + 1);
     }
@@ -40,17 +38,22 @@ export function CategoryPagination({
 
   const pageNumbers = generatePageNumbers();
 
+  // Helper function to build URL
+  const buildUrl = (page: number) => {
+    return `/category/${category}?page=${page}`;
+  };
+
   return (
     <div className="flex items-center justify-center space-x-2 mt-12 py-8">
       {/* Previous Button */}
       {hasPrev && currentPage > 1 ? (
-        <Link 
-          href={`/${category}?page=${currentPage - 1}`}
+        <a 
+          href={buildUrl(currentPage - 1)}
           className="flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-orange-600 transition-colors"
         >
           <ChevronLeft className="w-4 h-4 mr-1" />
           Previous
-        </Link>
+        </a>
       ) : (
         <div className="flex items-center px-3 py-2 text-sm font-medium text-gray-400 bg-gray-100 border border-gray-200 rounded-lg cursor-not-allowed">
           <ChevronLeft className="w-4 h-4 mr-1" />
@@ -61,12 +64,12 @@ export function CategoryPagination({
       {/* First page */}
       {pageNumbers[0] > 1 && (
         <>
-          <Link
-            href={`/${category}?page=1`}
+          <a
+            href={buildUrl(1)}
             className="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-orange-600 transition-colors"
           >
             1
-          </Link>
+          </a>
           {pageNumbers[0] > 2 && (
             <span className="px-2 py-2 text-gray-500">...</span>
           )}
@@ -75,9 +78,9 @@ export function CategoryPagination({
 
       {/* Page Numbers */}
       {pageNumbers.map((page) => (
-        <Link
+        <a
           key={page}
-          href={`/${category}?page=${page}`}
+          href={buildUrl(page)}
           className={`px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
             page === currentPage
               ? 'text-white bg-orange-600 border border-orange-600'
@@ -85,7 +88,7 @@ export function CategoryPagination({
           }`}
         >
           {page}
-        </Link>
+        </a>
       ))}
 
       {/* Last page */}
@@ -94,24 +97,24 @@ export function CategoryPagination({
           {pageNumbers[pageNumbers.length - 1] < totalPages - 1 && (
             <span className="px-2 py-2 text-gray-500">...</span>
           )}
-          <Link
-            href={`/${category}?page=${totalPages}`}
+          <a
+            href={buildUrl(totalPages)}
             className="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-orange-600 transition-colors"
           >
             {totalPages}
-          </Link>
+          </a>
         </>
       )}
 
       {/* Next Button */}
       {hasNext && currentPage < totalPages ? (
-        <Link 
-          href={`/${category}?page=${currentPage + 1}`}
+        <a 
+          href={buildUrl(currentPage + 1)}
           className="flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-orange-600 transition-colors"
         >
           Next
           <ChevronRight className="w-4 h-4 ml-1" />
-        </Link>
+        </a>
       ) : (
         <div className="flex items-center px-3 py-2 text-sm font-medium text-gray-400 bg-gray-100 border border-gray-200 rounded-lg cursor-not-allowed">
           Next

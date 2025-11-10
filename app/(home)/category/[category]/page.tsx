@@ -22,8 +22,7 @@ async function getCategoryArticles(category: string, page: number) {
     const response = await fetch(
       `${baseUrl}/api/articles/category/${category}?page=${page}&limit=10`,
       { 
-        cache: 'no-store',
-        next: { revalidate: 300 } // Cache for 5 minutes
+        next: { revalidate: 300 }
       }
     );
     
@@ -140,7 +139,6 @@ function getCategoryDisplayName(category: string) {
   return categoryMap[category] || category.charAt(0).toUpperCase() + category.slice(1);
 }
 
-// Generate metadata for SEO
 export async function generateMetadata({ params }: { params: Promise<{ category: string }> }): Promise<Metadata> {
   const resolvedParams = await params;
   const categoryName = resolvedParams.category;
