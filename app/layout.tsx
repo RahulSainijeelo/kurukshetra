@@ -7,6 +7,8 @@ import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { JsonLd } from "@/components/seo/JsonLd";
 import { GoogleAnalytics } from "@/components/seo/GoogleAnalytics";
+import NextTopLoader from 'nextjs-toploader';
+import Script from 'next/script';
 import "./globals.css";
 
 const inter = Inter({
@@ -162,7 +164,7 @@ export default function RootLayout({
     "@type": "NewsMediaOrganization",
     "name": "Kurukshetra.info",
     "alternateName": "Kurukshetra Digital Media",
-    "url": process.env.NEXT_PUBLIC_SITE_URL || "https://kurukshetra.com",
+    "url": process.env.NEXT_PUBLIC_SITE_URL || "https://kurukshetra.info",
     "logo": {
       "@type": "ImageObject",
       "url": `${process.env.NEXT_PUBLIC_SITE_URL}/logo.png`,
@@ -190,7 +192,7 @@ export default function RootLayout({
       "@type": "ContactPoint",
       "telephone": "+91-XXXX-XXXXXX",
       "contactType": "Editorial",
-      "email": "editorial@kurukshetra.com"
+      "email": "kurukshetra5751@gmail.com"
     },
     "publishingPrinciples": `${process.env.NEXT_PUBLIC_SITE_URL}/about`,
     "diversityPolicy": `${process.env.NEXT_PUBLIC_SITE_URL}/diversity-policy`,
@@ -201,7 +203,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Kurukshetra.info",
-    "url": process.env.NEXT_PUBLIC_SITE_URL || "https://kurukshetra.com",
+    "url": process.env.NEXT_PUBLIC_SITE_URL || "https://kurukshetra.info",
     "description": "Kurukshetra.info is the digital command post in the silent war for Bharat's soul. We provide unflinching analysis on Global, Bharat, Dharma, Politics, and History to arm the modern Intellectual Kshatriya.",
     "inLanguage": ["en-IN", "hi-IN"],
     "potentialAction": {
@@ -225,31 +227,38 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} ${notoSansDevanagari.variable}`}>
       <head>
+        {/* Preconnect to external domains */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="preconnect" href="https://platform.twitter.com" />
+        <link rel="preconnect" href="https://www.youtube.com" />
+        <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
+        
+        {/* Manifest and PWA */}
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="msapplication-TileColor" content="#ea580c" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        
+        {/* Structured Data - Organization */}
         <JsonLd data={organizationJsonLd} />
+        
+        {/* Structured Data - Website */}
         <JsonLd data={websiteJsonLd} />
+        
+        {/* Google Analytics */}
         <GoogleAnalytics />
-        {/* Preconnect to external domains */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://www.google-analytics.com" />
-        <link rel="preconnect" href="https://platform.twitter.com" />
-        {/* <script async src="https://platform.twitter.com/widgets.js" charSet="u"/> */}
-
-        <link rel="preconnect" href="https://www.youtube.com" />
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5404939334049607"
-     crossOrigin="anonymous"></script>
       </head>
       <body className={`${inter.className} antialiased`}>
+        <NextTopLoader showSpinner={false}/>
+        
         <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-orange-600 text-white px-4 py-2 rounded-md z-50">
           Skip to main content
         </a>
-
+        
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <ClerkProvider>
             <div id="main-content">
@@ -258,6 +267,14 @@ export default function RootLayout({
           </ClerkProvider>
           <Toaster />
         </ThemeProvider>
+
+        {/* Google AdSense - Load after hydration */}
+        <Script
+          id="google-adsense"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5404939334049607"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
 
         {/* Analytics */}
         <Analytics />
